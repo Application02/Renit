@@ -93,7 +93,7 @@ public class RenterActivity extends AppCompatActivity
         try {
             displayname = pref.getString("firstname", null);
             displaysurname = pref.getString("surname",null);
-            txtUname.setText(" Welcome   "+displayname);
+            txtUname.setText(" Welcome "+displayname);
 
             Log.d(TAG, "displayname: " + displayname + " " +displaysurname);
             txtheadername.setText(displayname+" "+displaysurname);

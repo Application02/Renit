@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg"
+    android:background="@drawable/gradient"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -53,6 +53,7 @@
                 android:prompt="@string/spinner_title"/>-->
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_marginTop="16dp"
 
@@ -60,7 +61,7 @@
 
             <TextView
                 android:id="@+id/txtSlectValue"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Select Type" />
@@ -76,6 +77,51 @@
 
             </Spinner>
         </RelativeLayout>
+
+
+        <RadioGroup
+            android:id="@+id/typeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/white_out_line"
+            android:checkedButton="@+id/offer"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <RadioButton
+                android:id="@+id/renter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Renter"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/owner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_widget_background"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Owner"
+                android:textColor="@color/black" />
+        </RadioGroup>
 
 
 
@@ -158,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/colorAccent"
+            app:passwordToggleTint="@color/white"
             android:theme="@style/TextLabel"
             android:layout_marginTop="8dp">
 
@@ -174,7 +220,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/colorAccent"
+            app:passwordToggleTint="@color/white"
             android:theme="@style/TextLabel"
             android:layout_marginTop="8dp">
 
@@ -191,12 +237,13 @@
         <Button
             android:id="@+id/buttonRegister"
 
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
-            android:text="register" />
+            style="@style/DefaultButton"
+            android:text="Register" />
 
         <TextView
             android:id="@+id/textViewLogin"

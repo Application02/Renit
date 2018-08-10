@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         });
         TextView textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
-        textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>I don't have account yet. </font><font color='#00b8d4'>create one</font>"));
+        textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>First time here? </font><font color='#079A49'>Sign Up</font>"));
         textViewCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

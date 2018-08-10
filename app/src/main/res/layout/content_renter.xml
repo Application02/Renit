@@ -8,20 +8,32 @@
     tools:context=".Renter.RenterActivity"
     tools:showIn="@layout/app_bar_renter">
 
-
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/white"/>
+<RelativeLayout
+    android:gravity="center"
+    android:id="@+id/txtUnameuser"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
     <TextView
-        android:id="@+id/txtUname"
+android:id="@+id/txtUname"
+android:layout_margin="5dp"
         android:hint="Welcome User"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:gravity="left"/>
+</RelativeLayout>
 
     <FrameLayout
         android:id="@+id/framlayout"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/txtUname"
+        android:layout_below="@id/txtUnameuser"
         android:layout_above="@+id/ll_view"
         android:layout_gravity="top"
         android:layout_weight="8"
