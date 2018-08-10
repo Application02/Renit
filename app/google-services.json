@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "2854894437",
+    "firebase_url": "https://myapplication-3c866.firebaseio.com",
+    "project_id": "myapplication-3c866",
+    "storage_bucket": "myapplication-3c866.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2854894437:android:f7e9638d5bac1ec9",
+        "android_client_info": {
+          "package_name": "com.sau.rentalclothsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2854894437-731e4c3lvchhr5vstbov6cj7l7rq1vih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sau.rentalclothsapp",
+            "certificate_hash": "5743ab16a805810b818df0f350cec9160bc18d87"
+          }
+        },
+        {
+          "client_id": "2854894437-ba1lc37e8h4095fbucev20gk9mshgc9h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7orgZgGfAc_GGWRSMbGwQEoZMWZ2-S74"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2854894437-ba1lc37e8h4095fbucev20gk9mshgc9h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

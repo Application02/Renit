@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Renit</string>
+    <string name="spinner_title">User type</string>
+    <string name="loading">Loading...</string>
+    <string name="nameerror">Enter Valide Name</string>
+    <string name="mailerror">Enter Valide Email</string>
+    <string name="phoneerror">Enter valide Number</string>
+
+    <string name="facebook_app_id">689585554717630</string>
+    <string name="fb_login_protocol_scheme">fb689585554717630</string>
+    <string name="title_activity_owner">OwnerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_Exit">Exit</string>
+    <string name="title_activity_renter">RenterActivity</string>
+    <string name="discuss_about_header">Select Type</string>
+    <string name="club_type">Type</string>
+
+
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+    <string name="slide_1_title">Space</string>
+    <string name="slide_1_desc">The easiest way to get Space  from your favourite Places!</string>
+
+    <string name="slide_2_title">Dresses</string>
+    <string name="slide_2_desc">Book dresses for your family and friends!</string>
+
+    <string name="slide_3_title">Equipment</string>
+    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+
+    <!--<string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>-->
+
+
+</resources>
