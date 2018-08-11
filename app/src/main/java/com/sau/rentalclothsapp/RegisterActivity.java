@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,16 +29,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class RegisterActivity extends AppCompatActivity {
 
-    Spinner spinner;
-    TextView txtSelectValue;
+   // Spinner spinner;
+   // TextView txtSelectValue;
     EditText edtfirstname, edtsurname, edtmail, edtphoneno, edtpassword, edtconfirmpassword;
     String firstname = null, surname = null;
     String email = null;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String item = "Renter";
 
+    RadioButton renter,owner;
+    RadioGroup radioGroup;
     CheckBox space, equipment, dresses;
 
     Button buttonRegister;
@@ -56,11 +60,13 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         TextView textViewLogin = (TextView) findViewById(R.id.textViewLogin);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);
-        txtSelectValue = findViewById(R.id.txtSlectValue);
+    /*    spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(this);*/
+       // txtSelectValue = findViewById(R.id.txtSlectValue);
 
-
+        radioGroup = (RadioGroup) findViewById(R.id.typeGroup);
+        renter = findViewById(R.id.renter);
+        renter.setChecked(true);
         //Getting instance of CheckBoxes and Button from the activty_main.xml file
         space = (CheckBox) findViewById(R.id.checkBox);
         equipment = (CheckBox) findViewById(R.id.checkBox2);
@@ -77,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
-
+/*
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("Renter");
@@ -87,10 +93,10 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
 
         // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+      //  spinner.setAdapter(dataAdapter);
 
         textViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,27 +106,42 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             }
         });
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
-        txtSelectValue.setOnClickListener(new View.OnClickListener() {
+       /* txtSelectValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 spinner.setVisibility(View.VISIBLE);
                 spinner.performClick();
                 txtSelectValue.setVisibility(View.GONE);
             }
-        });
+        });*/
+
+
         intlaiton();
     }
 
 
+
+
     private void intlaiton() {
+
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validate(edtfirstname) && validate(edtsurname) && validate(edtmail) && validate(edtphoneno) && validate(edtpassword) && validate(edtconfirmpassword) && Flag.equals("1")) {
+                if (validate(edtfirstname) && validate(edtsurname) && validate(edtmail) && validate(edtphoneno) && validate(edtpassword) && validate(edtconfirmpassword) ) {
                     firstname = edtfirstname.getText().toString();
                     surname = edtsurname.getText().toString();
                     email = edtmail.getText().toString();
+
+                    if (renter.isChecked())
+                    {
+                        item="Renter";
+                    }
+                    else
+                    {
+                        item="Owner";
+
+                    }
 
                     if (isValidEmailAddress(email)) {
                         if (edtpassword.getText().toString().equals(edtconfirmpassword.getText().toString())) {
@@ -222,6 +243,18 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     protected void onResume() {
         super.onResume();
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.renter){
+                    checkboxlayout.setVisibility(View.GONE);
+
+                } else {
+                    checkboxlayout.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
 
@@ -238,31 +271,5 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         return false;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
-        // On selecting a spinner item
 
-        Flag = "1";
-        item = parent.getItemAtPosition(position).toString();
-
-        if (item.equals("Owner")) {
-            checkboxlayout.setVisibility(View.VISIBLE);
-            view1.setVisibility(View.VISIBLE);
-        }
-        if (item.equals("Renter")) {
-            checkboxlayout.setVisibility(View.GONE);
-            view1.setVisibility(View.GONE);
-        }
-
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }

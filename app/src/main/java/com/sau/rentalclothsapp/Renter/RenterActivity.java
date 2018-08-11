@@ -1,8 +1,8 @@
 package com.sau.rentalclothsapp.Renter;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
+
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
@@ -112,9 +115,9 @@ public class RenterActivity extends AppCompatActivity
         toggle.syncState();
 
         fragment = new Home_Fragment();
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.framlayout, fragment);
+        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.framlayout, new Home_Fragment());
         transaction.commit();
         txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homedark), null, null);
         txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
@@ -328,7 +331,7 @@ public class RenterActivity extends AppCompatActivity
         }
 
         if (fragment != null) {
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
@@ -352,7 +355,7 @@ public class RenterActivity extends AppCompatActivity
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
 
             fragment = new Home_Fragment();
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
@@ -365,7 +368,7 @@ public class RenterActivity extends AppCompatActivity
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
 
             fragment = new Inbox_Fragment();
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
@@ -380,7 +383,7 @@ public class RenterActivity extends AppCompatActivity
 
 
             fragment = new Profile_Fragment();
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
@@ -394,7 +397,7 @@ public class RenterActivity extends AppCompatActivity
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settingdark), null, null);
 
             fragment = new Setting_Fragment();
-            FragmentManager manager = getFragmentManager();
+            FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
