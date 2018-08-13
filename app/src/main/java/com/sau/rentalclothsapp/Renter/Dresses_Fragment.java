@@ -1,6 +1,7 @@
 package com.sau.rentalclothsapp.Renter;
 
 
+import android.app.DatePickerDialog;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,7 +14,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +26,7 @@ import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
 import com.sau.rentalclothsapp.R;
 
-
+import java.util.Calendar;
 
 
 public class Dresses_Fragment extends Fragment {
@@ -32,6 +36,19 @@ public class Dresses_Fragment extends Fragment {
     at.markushi.ui.CircleButton imgcolor;
     android.app.FragmentManager fm;
     Spinner spin;
+    RadioButton  yes,no;
+
+
+    Button btnDatePicker, btnTimePicker;
+    TextView txtDate, txtTime;
+
+    private int mYear, mMonth, mDay, mHour, mMinute;
+
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+
+    private int year, month, day;
 
     String[] days = { "1", "2", "3", "4", "5","6","7","other"};
     @Override
@@ -40,23 +57,78 @@ public class Dresses_Fragment extends Fragment {
 
         imgcolor = view.findViewById(R.id.imgcolor);
         spin = (Spinner) view.findViewById(R.id.spinnerRentaldays);
+        yes = (RadioButton) view.findViewById(R.id.yes);
+        no = (RadioButton) view.findViewById(R.id.no);
+
+        btnDatePicker=(Button)view.findViewById(R.id.btn_date);
+        txtDate=(TextView) view.findViewById(R.id.in_date);
+
+
+
 
         selectcolor();
 
-        selectSpinner();
+        selectdays();
+
+        shippingrequired();
+
+        selectdate();
+
+
 
         return view;
 
     }
 
-    private void selectSpinner() {
+    private void selectdate() {
+
+        btnDatePicker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // Get Current Date
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+
+                                txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+
+            }
+        });
+
+    }
+
+    private void shippingrequired() {
+
+        if (yes.isChecked()) {
+          //  Toast.makeText(getActivity(), "Yes", Toast.LENGTH_SHORT).show();
+        } else if (no.isChecked()) {
+          //  Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void selectdays() {
 
 
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(getContext(),days[position] , Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(),days[position] , Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -213,7 +285,7 @@ public class Dresses_Fragment extends Fragment {
                         getResources().getColor(R.color.LemonChiffon),
                         /*   getResources().getColor(R.color.FloralWhite),*/
                         getResources().getColor(R.color.Snow),
-                }, getResources().getColor(R.color.colorPrimary), 4, 4);
+                }, getResources().getColor(R.color.Black), 4, 4);
 
         colorPickerDialog.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener() {
             @Override

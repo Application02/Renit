@@ -6,6 +6,9 @@
     <string name="mailerror">Enter Valide Email</string>
     <string name="phoneerror">Enter valide Number</string>
 
+
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+
     <string name="facebook_app_id">689585554717630</string>
     <string name="fb_login_protocol_scheme">fb689585554717630</string>
     <string name="title_activity_owner">OwnerActivity</string>

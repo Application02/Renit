@@ -26,6 +26,7 @@
                 android:inputType="textPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:hint="First Name" />
         </android.support.design.widget.TextInputLayout>
 
@@ -38,9 +39,10 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/edtsurname"
                 android:inputType="textPersonName"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Surname" />
+                android:hint="Last Name" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -182,6 +184,7 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/edtmail"
                 android:inputType="textEmailAddress"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email" />
@@ -199,6 +202,7 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/edtphoneno"
                 android:inputType="phone"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="10"
@@ -216,6 +220,7 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/edtpassword"
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:hint="password" />
@@ -232,6 +237,7 @@
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/edtconfirmpassword"
                 android:layout_width="match_parent"
+                android:textColor="@color/white"
                 android:inputType="textPassword"
                 android:layout_height="wrap_content"
                 android:hint="Confirm password" />

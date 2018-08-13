@@ -19,7 +19,7 @@
 
             <item>
 
-                <bitmap android:gravity="bottom|right" android:src="@android:drawable/arrow_down_float" />
+                <bitmap android:gravity="bottom|right" android:src="@drawable/spinnerarrow" />
 
             </item>
 

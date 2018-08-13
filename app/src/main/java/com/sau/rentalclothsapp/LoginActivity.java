@@ -108,6 +108,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+/*
                 if (validate(edtloginmail) && validate(edtloginpwd)) {
 
 
@@ -123,7 +124,19 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
                 }
+*/
+                //this code for only testing time after texsting remove this and remove commite above code
 
+
+                if (whichActivity.equals("Renter")) {
+                    Intent intent = new Intent(getApplicationContext(), RenterActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
 
 

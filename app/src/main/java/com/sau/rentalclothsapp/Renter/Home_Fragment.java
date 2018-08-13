@@ -42,7 +42,7 @@ public class Home_Fragment extends Fragment {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(new Dresses_Fragment(), "Dresses");
         adapter.addFragment(new Space_Fragment(), "Space");
         adapter.addFragment(new Equipment_Fragment(), "Equipment");
@@ -52,6 +52,7 @@ public class Home_Fragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
 
     }
 }
