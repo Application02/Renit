@@ -4,6 +4,8 @@
     tools:mContext="info.androidhive.gmail.activity.MainActivity">
     <item
         android:id="@+id/action_delete"
+        android:visible="false"
+        android:icon="@drawable/ic_space"
         android:orderInCategory="100"
         android:title="action_delete"
         app:showAsAction="always" />

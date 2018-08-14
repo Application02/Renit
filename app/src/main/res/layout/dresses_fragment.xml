@@ -75,6 +75,7 @@
              />
 
         <RadioGroup
+            android:id="@+id/shipment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -87,7 +88,6 @@
                 android:layout_marginTop="10dp"
                 android:checked="true"
                 android:text="Yes"
-                android:textColor="#154"
                 android:textStyle="bold" />
 
             <RadioButton
@@ -98,7 +98,6 @@
                 android:layout_marginTop="10dp"
                 android:checked="false"
                 android:text="No"
-                android:textColor="#154"
                 android:textStyle="bold" />
 
         </RadioGroup>
@@ -106,8 +105,33 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/lin4"
+        android:layout_below="@+id/lin3"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-<LinearLayout
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:textSize="17sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/in_date"
+            android:hint="DD/MM/YYYY"
+            />
+
+
+    </LinearLayout>
+
+
+<!--<LinearLayout
     android:id="@+id/lin4"
     android:layout_below="@+id/lin3"
     android:layout_marginTop="10dp"
@@ -132,7 +156,7 @@
 
 
 
-</LinearLayout>
+</LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/lin5"

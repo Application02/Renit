@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,7 @@ public class Dresses_Fragment extends Fragment {
     android.app.FragmentManager fm;
     Spinner spin;
     RadioButton  yes,no;
+    RadioGroup radio_grp;
 
 
     Button btnDatePicker, btnTimePicker;
@@ -53,14 +57,16 @@ public class Dresses_Fragment extends Fragment {
     String[] days = { "1", "2", "3", "4", "5","6","7","other"};
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.dresses_fragment, container, false);
 
         imgcolor = view.findViewById(R.id.imgcolor);
         spin = (Spinner) view.findViewById(R.id.spinnerRentaldays);
-        yes = (RadioButton) view.findViewById(R.id.yes);
-        no = (RadioButton) view.findViewById(R.id.no);
+        radio_grp= view.findViewById(R.id.shipment);
+        yes = radio_grp.findViewById(R.id.yes);
+        no = radio_grp.findViewById(R.id.no);
 
-        btnDatePicker=(Button)view.findViewById(R.id.btn_date);
+      //  btnDatePicker=(Button)view.findViewById(R.id.btn_date);
         txtDate=(TextView) view.findViewById(R.id.in_date);
 
 
@@ -80,9 +86,17 @@ public class Dresses_Fragment extends Fragment {
 
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.dresses_fragment_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+
     private void selectdate() {
 
-        btnDatePicker.setOnClickListener(new View.OnClickListener() {
+        txtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -113,11 +127,18 @@ public class Dresses_Fragment extends Fragment {
 
     private void shippingrequired() {
 
-        if (yes.isChecked()) {
-          //  Toast.makeText(getActivity(), "Yes", Toast.LENGTH_SHORT).show();
-        } else if (no.isChecked()) {
-          //  Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-        }
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

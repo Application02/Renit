@@ -7,14 +7,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.sau.rentalclothsapp.R;
 
@@ -25,22 +29,25 @@ public class Equipment_Fragment extends Fragment {
     View view;
 
     RadioButton yes,no;
+    RadioGroup radio_grp;
     TextView txtStartDate,txtEndDate,txtStartTime,txtEndTime;
     Button btnStartDatePicker,btnEndDatePicker;
     private int mYear, mMonth, mDay, mYear1, mMonth1, mDay1,mHour, mMinute,mHour1, mMinute1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.equipment_fragment, container, false);
 
-        yes =  view.findViewById(R.id.yes);
-        no =  view.findViewById(R.id.no);
+        radio_grp= view.findViewById(R.id.transportation);
+        yes =  radio_grp.findViewById(R.id.yes);
+        no =  radio_grp.findViewById(R.id.no);
 
         txtStartDate= view.findViewById(R.id.in_startdate);
         txtEndDate= view.findViewById(R.id.in_enddate);
 
-        btnStartDatePicker=view.findViewById(R.id.btn_startdate);
-        btnEndDatePicker=view.findViewById(R.id.btn_enddate);
+      //  btnStartDatePicker=view.findViewById(R.id.btn_startdate);
+       // btnEndDatePicker=view.findViewById(R.id.btn_enddate);
 
         txtStartTime= view.findViewById(R.id.in_starttime);
         txtEndTime= view.findViewById(R.id.in_endtime);
@@ -53,6 +60,12 @@ public class Equipment_Fragment extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.equipment_fragment_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
 
     private void selecttime() {
@@ -113,17 +126,24 @@ public class Equipment_Fragment extends Fragment {
 
     private void transportationrequired() {
 
-        if (yes.isChecked()) {
-            //  Toast.makeText(getActivity(), "Yes", Toast.LENGTH_SHORT).show();
-        } else if (no.isChecked()) {
-            //  Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-        }
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
     private void selectdate() {
 
-        btnStartDatePicker.setOnClickListener(new View.OnClickListener() {
+        txtStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -151,7 +171,7 @@ public class Equipment_Fragment extends Fragment {
         });
 
 
-        btnEndDatePicker.setOnClickListener(new View.OnClickListener() {
+        txtEndDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
