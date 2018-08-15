@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.sau.rentalclothsapp.R;
 import com.sau.rentalclothsapp.Renter.adepter.ViewPagerAdapter;
 
@@ -33,9 +32,6 @@ public class Home_Fragment extends Fragment {
 
         tabLayout = view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
-
 
 
         return view;

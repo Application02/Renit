@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,37 +33,30 @@ public class Dresses_Fragment extends Fragment {
     at.markushi.ui.CircleButton imgcolor;
     android.app.FragmentManager fm;
     Spinner spin;
-    RadioButton  yes,no;
+    RadioButton yes, no;
     RadioGroup radio_grp;
 
 
-
     TextView txtDate;
-
+    String[] days = {"1", "2", "3", "4", "5", "6", "7", "other"};
     private int mYear, mMonth, mDay, mHour, mMinute;
-
-
     private DatePicker datePicker;
     private Calendar calendar;
-
     private int year, month, day;
 
-    String[] days = { "1", "2", "3", "4", "5","6","7","other"};
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.dresses_fragment, container, false);
 
         imgcolor = view.findViewById(R.id.imgcolor);
-        spin =  view.findViewById(R.id.spinnerRentaldays);
-        radio_grp= view.findViewById(R.id.shipment);
+        spin = view.findViewById(R.id.spinnerRentaldays);
+        radio_grp = view.findViewById(R.id.shipment);
         yes = radio_grp.findViewById(R.id.yes);
         no = radio_grp.findViewById(R.id.no);
 
-      //  btnDatePicker=(Button)view.findViewById(R.id.btn_date);
-        txtDate= view.findViewById(R.id.in_date);
-
-
+        //  btnDatePicker=(Button)view.findViewById(R.id.btn_date);
+        txtDate = view.findViewById(R.id.in_date);
 
 
         selectcolor();
@@ -76,7 +68,6 @@ public class Dresses_Fragment extends Fragment {
         selectdate();
 
 
-
         return view;
 
     }
@@ -85,7 +76,7 @@ public class Dresses_Fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.dresses_fragment_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 
@@ -131,14 +122,13 @@ public class Dresses_Fragment extends Fragment {
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     private void selectdays() {
-
 
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -154,7 +144,7 @@ public class Dresses_Fragment extends Fragment {
         });
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,days);
+        ArrayAdapter aa = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, days);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
@@ -163,7 +153,7 @@ public class Dresses_Fragment extends Fragment {
     private void selectcolor() {
         final ColorPickerDialog colorPickerDialog = new ColorPickerDialog();
         colorPickerDialog.initialize(R.string.color_picker_default_title,
-                new int[] {
+                new int[]{
                         getResources().getColor(R.color.Black),
                         /* getResources().getColor(R.color.Navy),*/
                         getResources().getColor(R.color.DarkBlue),
@@ -314,7 +304,6 @@ public class Dresses_Fragment extends Fragment {
         fm = getActivity().getFragmentManager();
 
 
-
         imgcolor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -322,7 +311,6 @@ public class Dresses_Fragment extends Fragment {
                 colorPickerDialog.show(fm, "colorpicker");
             }
         });
-
 
 
     }

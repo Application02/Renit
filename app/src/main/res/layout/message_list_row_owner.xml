@@ -12,10 +12,10 @@
 
     <RelativeLayout
         android:id="@+id/rel"
-        android:paddingLeft="?listPreferredItemPaddingLeft"
-        android:paddingRight="?listPreferredItemPaddingRight"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="?listPreferredItemPaddingLeft"
+        android:paddingRight="?listPreferredItemPaddingRight">
 
 
         <LinearLayout
@@ -32,8 +32,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lines="1"
                 android:hint="Name"
+                android:lines="1"
                 android:textColor="@color/from"
                 android:textSize="@dimen/msg_text_primary"
                 android:textStyle="bold" />
@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lines="1"
                 android:hint="Title"
+                android:lines="1"
                 android:textColor="@color/subject"
                 android:textSize="@dimen/msg_text_secondary"
                 android:textStyle="bold" />
@@ -54,8 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lines="1"
                 android:hint="messages"
+                android:lines="1"
                 android:textColor="@color/message"
                 android:textSize="@dimen/msg_text_secondary" />
 
@@ -83,8 +83,7 @@
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    />
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -115,8 +114,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:textColor="@color/timestamp"
             android:hint="time"
+            android:textColor="@color/timestamp"
             android:textSize="@dimen/timestamp"
             android:textStyle="bold" />
 
@@ -129,20 +128,19 @@
             android:tint="@color/icon_tint_normal" />
 
 
-
     </RelativeLayout>
 
 
     <View
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.0000001dp"
+        android:layout_below="@+id/rel"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
-        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
         android:background="@color/icon_tint_normal"
-        android:layout_below="@+id/rel"
         android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:layout_height="0.0000001dp">
+        android:paddingRight="0dp">
 
     </View>
 

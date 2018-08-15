@@ -1,7 +1,6 @@
 package com.sau.rentalclothsapp;
 
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,24 +27,30 @@ import com.sau.rentalclothsapp.Owner.OwnerActivity;
 import com.sau.rentalclothsapp.Renter.RenterActivity;
 
 
-
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
 
-    SharedPreferences pref;
-    String whichActivity,category1,category2,category3;
-
     private static final String TAG = "LoginActivity";
-
     private static final int RC_SIGN_IN = 007;
+    SharedPreferences pref;
+    String whichActivity, category1, category2, category3;
     Button btnLogin;
     EditText edtloginmail, edtloginpwd;
-
 
 
     Spinner mSpinner;
     TextView txtSelectValue;
 
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String html) {
+        Spanned result;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            result = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            result = Html.fromHtml(html);
+        }
+        return result;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,11 +63,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             whichActivity = pref.getString("type", null);
             Log.d(TAG, "whichActivity: " + whichActivity);
 
-            category1 = pref.getString("space",null);
-            category2 = pref.getString("equipment",null);
-            category3 = pref.getString("dresses",null);
+            category1 = pref.getString("space", null);
+            category2 = pref.getString("equipment", null);
+            category3 = pref.getString("dresses", null);
 
-            Log.d(TAG, "onCreate: "+category1+category2+category3);
+            Log.d(TAG, "onCreate: " + category1 + category2 + category3);
 
             editor.commit();
 
@@ -82,9 +87,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-
-
-
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 */
                 //this code for only testing time after texsting remove this and remove commite above code
 
-                try{
+                try {
                     switch (whichActivity) {
                         case "Renter": {
                             Intent intent = new Intent(getApplicationContext(), RenterActivity.class);
@@ -128,8 +130,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             break;
                     }
 
-                }catch (NullPointerException e)
-                {
+                } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
 
@@ -164,8 +165,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         });
     }
 
-
-
     //check editText Null or Not
     private boolean validate(EditText editText) {
         // check the lenght of the enter data in EditText and give error if its empty
@@ -178,8 +177,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         editText.requestFocus();
         return false;
     }
-
-
 
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
@@ -203,22 +200,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
-    @SuppressWarnings("deprecation")
-    public static Spanned fromHtml(String html) {
-        Spanned result;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            result = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY);
-        } else {
-            result = Html.fromHtml(html);
-        }
-        return result;
-    }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
     }
-
 
 
     @Override
@@ -253,7 +238,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onStart();
 
     }
-
 
 
 }

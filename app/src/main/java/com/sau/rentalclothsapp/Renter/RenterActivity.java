@@ -1,8 +1,6 @@
 package com.sau.rentalclothsapp.Renter;
 
 
-
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,56 +9,49 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.text.Html;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sau.rentalclothsapp.LoginActivity;
 import com.sau.rentalclothsapp.R;
 
-import org.json.JSONObject;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class RenterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    SharedPreferences pref;
-    String displayname,displaysurname;
-    private static final String TAG = "RenterActivity";
-
-    TextView txtUname,txtheadername,txt_img_home,txt_img_inbox,txt_img_pro,txt_img_setting;
-    ImageView imageView;
     public static final int PICK_IMAGE = 0;
-    private Uri imageUri;
-
+    private static final String TAG = "RenterActivity";
+    SharedPreferences pref;
+    String displayname, displaysurname;
+    TextView txtUname, txtheadername, txt_img_home, txt_img_inbox, txt_img_pro, txt_img_setting;
+    ImageView imageView;
     Fragment fragment = null;
     Toolbar toolbar;
-
-
-
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_renter);
 
-        toolbar =findViewById(R.id.toolbar1);
+        toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
 
@@ -93,11 +84,11 @@ public class RenterActivity extends AppCompatActivity
         SharedPreferences.Editor editor = pref.edit();
         try {
             displayname = pref.getString("firstname", null);
-            displaysurname = pref.getString("surname",null);
-            txtUname.setText(" Welcome "+displayname);
+            displaysurname = pref.getString("surname", null);
+            txtUname.setText(" Welcome " + displayname);
 
-            Log.d(TAG, "displayname: " + displayname + " " +displaysurname);
-            txtheadername.setText(displayname+" "+displaysurname);
+            Log.d(TAG, "displayname: " + displayname + " " + displaysurname);
+            txtheadername.setText(displayname + " " + displaysurname);
             editor.commit();
 
 
@@ -121,7 +112,6 @@ public class RenterActivity extends AppCompatActivity
         txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
         txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
         txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
-
 
 
         // NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -222,7 +212,7 @@ public class RenterActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-            builder.setTitle(Html.fromHtml("</b>"+"Confirm?" +"</b>"));
+            builder.setTitle(Html.fromHtml("</b>" + "Confirm?" + "</b>"));
             builder.setMessage("Do You Really Want To Exit?")
                     .setPositiveButton(Html.fromHtml("Yes"), new DialogInterface.OnClickListener() {
                         @Override
@@ -306,7 +296,7 @@ public class RenterActivity extends AppCompatActivity
         } else if (id == R.id.nav_SignOut1) {
 
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-            builder.setTitle(Html.fromHtml("</b>"+"Confirm?" +"</b>"));
+            builder.setTitle(Html.fromHtml("</b>" + "Confirm?" + "</b>"));
             builder.setMessage("You Want To SignOut?")
                     .setPositiveButton(Html.fromHtml("Yes"), new DialogInterface.OnClickListener() {
                         @Override
@@ -345,8 +335,7 @@ public class RenterActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
 
-        if (view==txt_img_home)
-        {
+        if (view == txt_img_home) {
             txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homedark), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
@@ -357,9 +346,7 @@ public class RenterActivity extends AppCompatActivity
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
-        }
-        else if(view==txt_img_inbox)
-        {
+        } else if (view == txt_img_inbox) {
             txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxdark), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
@@ -371,9 +358,7 @@ public class RenterActivity extends AppCompatActivity
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
 
-        }
-        else if(view==txt_img_pro)
-        {
+        } else if (view == txt_img_pro) {
             txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profiledark), null, null);
@@ -386,9 +371,7 @@ public class RenterActivity extends AppCompatActivity
             transaction.replace(R.id.framlayout, fragment);
             transaction.commit();
 
-        }
-        else if(view==txt_img_setting)
-        {
+        } else if (view == txt_img_setting) {
             txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);

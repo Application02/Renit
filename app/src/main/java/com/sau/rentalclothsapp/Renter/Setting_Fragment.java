@@ -1,7 +1,6 @@
 package com.sau.rentalclothsapp.Renter;
 
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,16 +17,17 @@ import com.sau.rentalclothsapp.R;
 public class Setting_Fragment extends Fragment {
 
     View view;
-    RadioButton bytextmsg,bymail;
+    RadioButton bytextmsg, bymail;
     RadioGroup radio_grp;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.setting_fragment, container, false);
 
-        radio_grp= view.findViewById(R.id.radio_grp);
-        bytextmsg =  radio_grp.findViewById(R.id.bytextmsg);
-        bymail =  radio_grp.findViewById(R.id.bymail);
+        radio_grp = view.findViewById(R.id.radio_grp);
+        bytextmsg = radio_grp.findViewById(R.id.bytextmsg);
+        bymail = radio_grp.findViewById(R.id.bymail);
 
         getActivity().setTitle("Setting");
 
@@ -54,7 +54,7 @@ public class Setting_Fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.setting_fragment_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 }

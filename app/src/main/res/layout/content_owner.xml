@@ -12,24 +12,25 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/white"/>
+        android:background="@color/white" />
+
     <RelativeLayout
-        android:gravity="center"
         android:id="@+id/txtUnameuser"
-        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/txtUnameOwner"
-            android:layout_margin="5dp"
-            android:hint="Welcome User"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:textSize="17sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"/>
+            android:layout_margin="5dp"
+            android:gravity="left"
+            android:hint="Welcome User"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="17sp" />
     </RelativeLayout>
 
 
@@ -37,13 +38,14 @@
         android:id="@+id/framlayoutOwner"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/txtUnameuser"
         android:layout_above="@+id/ll_viewOwner"
+        android:layout_below="@+id/txtUnameuser"
         android:layout_gravity="top"
         android:layout_weight="8"
         android:orientation="vertical">
 
     </FrameLayout>
+
     <View
         android:id="@+id/ll_viewOwner"
         android:layout_width="match_parent"

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/lin1"
         android:layout_width="match_parent"
-        android:layout_marginTop="19dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="Select Activities" />
+            android:text="Select Activities"
+            android:textSize="17sp" />
 
         <Spinner
             android:id="@+id/spinneractivities"
-            android:layout_marginLeft="21dp"
-            android:background="@drawable/selector_spinner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:background="@drawable/selector_spinner">
 
         </Spinner>
 
@@ -33,36 +32,35 @@
 
     <LinearLayout
         android:id="@+id/lin2"
-        android:layout_below="@+id/lin1"
         android:layout_width="match_parent"
-        android:layout_marginTop="19dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lin1"
+        android:layout_marginTop="19dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:text="Enter Number of Guest" />
+            android:text="Enter Number of Guest"
+            android:textSize="17sp" />
 
 
-       <EditText
-           android:layout_width="fill_parent"
-           android:layout_height="wrap_content"
-           android:gravity="center"
-           android:inputType="number"
-           android:hint="30"/>
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="30"
+            android:inputType="number" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/lin3"
-        android:layout_below="@+id/lin2"
-        android:layout_marginTop="19dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin2"
+        android:layout_marginTop="19dp">
 
 
         <EditText
@@ -76,35 +74,35 @@
 
     <LinearLayout
         android:id="@+id/lin4"
-        android:layout_below="@+id/lin3"
-        android:layout_marginTop="19dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin3"
+        android:layout_marginTop="19dp">
 
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Say Somthing To Owner"/>
+            android:hint="Say Somthing To Owner" />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_below="@+id/lin5"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin5"
         android:layout_marginTop="19dp"
-        android:gravity="center"
-        android:layout_height="wrap_content">
+        android:gravity="center">
 
 
         <Button
             android:id="@+id/btnsubmit"
+            style="@style/DefaultButton"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            style="@style/DefaultButton"
             android:padding="10dp"
             android:text="Request"
             android:textSize="20sp"

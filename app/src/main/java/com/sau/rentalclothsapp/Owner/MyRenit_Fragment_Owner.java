@@ -15,6 +15,7 @@ import com.sau.rentalclothsapp.R;
 public class MyRenit_Fragment_Owner extends Fragment {
 
     View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
@@ -28,7 +29,7 @@ public class MyRenit_Fragment_Owner extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.profile_fragment_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 }

@@ -25,6 +25,4 @@
     <include layout="@layout/content_renter" />
 
 
-
-
 </android.support.design.widget.CoordinatorLayout>

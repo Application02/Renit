@@ -15,10 +15,12 @@ import java.util.ArrayList;
 public class RecyclerInboxAdapter extends RecyclerView.Adapter {
     ArrayList personNames;
     Context context;
+
     public RecyclerInboxAdapter(Context context/*, ArrayList personNames*/) {
         this.context = context;
         this.personNames = personNames;
     }
+
     @Override
     public RecyclerInboxAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // infalte the item Layout
@@ -48,8 +50,10 @@ public class RecyclerInboxAdapter extends RecyclerView.Adapter {
         // return personNames.size();
         return 10;
     }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name;// init the item view's
+
         public MyViewHolder(View itemView) {
             super(itemView);
             // get the reference of item view's

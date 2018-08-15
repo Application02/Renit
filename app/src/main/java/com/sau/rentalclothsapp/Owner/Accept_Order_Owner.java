@@ -7,16 +7,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
 import com.sau.rentalclothsapp.R;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,14 +28,13 @@ import java.util.Calendar;
 public class Accept_Order_Owner extends AppCompatActivity implements View.OnClickListener {
 
 
-    ImageView btncamera,btngallery;
-    private int mYear, mMonth, mDay,mHour, mMinute;
-
-
-    private static final int TAKE_PICTURE = 1;
     public static final int PICK_IMAGE = 0;
+    private static final int TAKE_PICTURE = 1;
+    ImageView btncamera, btngallery;
+    TextView txtDate, txtStartTime;
+    private int mYear, mMonth, mDay, mHour, mMinute;
     private Uri imageUri;
-    TextView txtDate,txtStartTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +42,8 @@ public class Accept_Order_Owner extends AppCompatActivity implements View.OnClic
 
         btncamera = findViewById(R.id.btncamera);
         btngallery = findViewById(R.id.btngallery);
-        txtDate=  findViewById(R.id.return_date);
-        txtStartTime= findViewById(R.id.in_starttime1);
+        txtDate = findViewById(R.id.return_date);
+        txtStartTime = findViewById(R.id.in_starttime1);
 
         btncamera.setOnClickListener(this);
         btngallery.setOnClickListener(this);
@@ -52,22 +53,19 @@ public class Accept_Order_Owner extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        if (view==btncamera)
-        {
+        if (view == btncamera) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, TAKE_PICTURE);
 
         }
-        if(view == btngallery)
-        {
+        if (view == btngallery) {
             Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent1.setType("image/*");
             intent1.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             startActivityForResult(intent1, PICK_IMAGE);
 
         }
-        if (view == txtDate)
-        {
+        if (view == txtDate) {
             // Get Current Date
             final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
@@ -89,8 +87,7 @@ public class Accept_Order_Owner extends AppCompatActivity implements View.OnClic
             datePickerDialog.show();
 
         }
-        if (view == txtStartTime)
-        {
+        if (view == txtStartTime) {
             // Get Current Time
             final Calendar c = Calendar.getInstance();
             mHour = c.get(Calendar.HOUR_OF_DAY);
@@ -112,7 +109,6 @@ public class Accept_Order_Owner extends AppCompatActivity implements View.OnClic
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -125,9 +121,9 @@ public class Accept_Order_Owner extends AppCompatActivity implements View.OnClic
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                     btncamera.setImageBitmap(bitmap);
 
-                    createDirectoryAndSaveFile(bitmap,"image1");
+                    createDirectoryAndSaveFile(bitmap, "image1");
 
-                 //   MediaStore.Images.Media.insertImage(getContentResolver(), yourBitmap, yourTitle , yourDescription);
+                    //   MediaStore.Images.Media.insertImage(getContentResolver(), yourBitmap, yourTitle , yourDescription);
 
 
 /*                    //send second activity
@@ -161,6 +157,7 @@ public class Accept_Order_Owner extends AppCompatActivity implements View.OnClic
             }
         }
     }
+
     private void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
 
         File direct = new File(Environment.getExternalStorageDirectory() + "/Renit");

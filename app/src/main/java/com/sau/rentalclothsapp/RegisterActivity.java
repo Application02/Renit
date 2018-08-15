@@ -6,50 +6,50 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private static final String TAG = "RegisterActivity";
     EditText edtfirstname, edtsurname, edtmail, edtphoneno, edtpassword, edtconfirmpassword;
     String firstname = null, surname = null;
     String email = null;
     String item = "Renter";
-
-    RadioButton renter,owner;
+    RadioButton renter, owner;
     RadioGroup radioGroup;
     CheckBox space, equipment, dresses;
-
     Button buttonRegister;
-
     LinearLayout checkboxlayout;
     View view1;
-
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
-
-    private static final String TAG = "RegisterActivity";
+    // isValidEmailAddress: Check the email address is OK
+    public static boolean isValidEmailAddress(String emailAddress) {
+        String emailRegEx;
+        Pattern pattern;
+        // Regex for a valid email address
+        emailRegEx = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        // Compare the regex with the email address
+        pattern = Pattern.compile(emailRegEx);
+        Matcher matcher = pattern.matcher(emailAddress);
+        if (!matcher.find()) {
+            return false;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
         renter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item="Renter";
+                item = "Renter";
 
 
             }
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         owner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item="Owner";
+                item = "Owner";
             }
         });
         //Getting instance of CheckBoxes and Button from the activty_main.xml file
@@ -95,8 +95,8 @@ public class RegisterActivity extends AppCompatActivity {
         textViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-               startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
@@ -105,20 +105,16 @@ public class RegisterActivity extends AppCompatActivity {
         intlaiton();
     }
 
-
-
-
     private void intlaiton() {
 
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validate(edtfirstname) && validate(edtsurname) && validate(edtmail) && validate(edtphoneno) && validate(edtpassword) && validate(edtconfirmpassword) ) {
+                if (validate(edtfirstname) && validate(edtsurname) && validate(edtmail) && validate(edtphoneno) && validate(edtpassword) && validate(edtconfirmpassword)) {
                     firstname = edtfirstname.getText().toString();
                     surname = edtsurname.getText().toString();
                     email = edtmail.getText().toString();
-
 
 
                     if (isValidEmailAddress(email)) {
@@ -188,9 +184,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
 
-                }
-                else
-                {
+                } else {
                     Toast.makeText(RegisterActivity.this, "please Select Type", Toast.LENGTH_SHORT).show();
                 }
 
@@ -200,23 +194,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-
-    // isValidEmailAddress: Check the email address is OK
-    public static boolean isValidEmailAddress(String emailAddress) {
-        String emailRegEx;
-        Pattern pattern;
-        // Regex for a valid email address
-        emailRegEx = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-        // Compare the regex with the email address
-        pattern = Pattern.compile(emailRegEx);
-        Matcher matcher = pattern.matcher(emailAddress);
-        if (!matcher.find()) {
-            return false;
-        }
-        return true;
-    }
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -224,7 +201,7 @@ public class RegisterActivity extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.renter){
+                if (checkedId == R.id.renter) {
                     checkboxlayout.setVisibility(View.GONE);
 
                 } else {

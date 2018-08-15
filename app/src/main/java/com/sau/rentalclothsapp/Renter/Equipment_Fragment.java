@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,25 +25,25 @@ public class Equipment_Fragment extends Fragment {
 
     View view;
 
-    RadioButton yes,no;
+    RadioButton yes, no;
     RadioGroup radio_grp;
-    TextView txtStartDate,txtEndDate,txtStartTime,txtEndTime;
-    private int mYear, mMonth, mDay, mYear1, mMonth1, mDay1,mHour, mMinute,mHour1, mMinute1;
+    TextView txtStartDate, txtEndDate, txtStartTime, txtEndTime;
+    private int mYear, mMonth, mDay, mYear1, mMonth1, mDay1, mHour, mMinute, mHour1, mMinute1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.equipment_fragment, container, false);
 
-        radio_grp= view.findViewById(R.id.transportation);
-        yes =  radio_grp.findViewById(R.id.yes);
-        no =  radio_grp.findViewById(R.id.no);
+        radio_grp = view.findViewById(R.id.transportation);
+        yes = radio_grp.findViewById(R.id.yes);
+        no = radio_grp.findViewById(R.id.no);
 
-        txtStartDate= view.findViewById(R.id.in_startdate);
-        txtEndDate= view.findViewById(R.id.in_enddate);
+        txtStartDate = view.findViewById(R.id.in_startdate);
+        txtEndDate = view.findViewById(R.id.in_enddate);
 
-        txtStartTime= view.findViewById(R.id.in_starttime);
-        txtEndTime= view.findViewById(R.id.in_endtime);
+        txtStartTime = view.findViewById(R.id.in_starttime);
+        txtEndTime = view.findViewById(R.id.in_endtime);
 
 
         transportationrequired();
@@ -59,7 +58,7 @@ public class Equipment_Fragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.equipment_fragment_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private void selecttime() {
@@ -123,13 +122,13 @@ public class Equipment_Fragment extends Fragment {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
             }
         });
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getActivity(), "no", Toast.LENGTH_SHORT).show();
             }
         });
 

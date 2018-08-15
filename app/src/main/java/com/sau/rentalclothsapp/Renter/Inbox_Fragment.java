@@ -17,11 +17,10 @@ import android.view.ViewGroup;
 import com.sau.rentalclothsapp.R;
 import com.sau.rentalclothsapp.Renter.adepter.RecyclerInboxAdapter;
 
-public class Inbox_Fragment extends Fragment  {
+public class Inbox_Fragment extends Fragment {
 
     private static final String TAG = "Inbox_Fragment";
     View view;
-
 
 
     @Override
@@ -62,7 +61,6 @@ public class Inbox_Fragment extends Fragment  {
         inflater.inflate(R.menu.inbox_fragment_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
-
 
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_gravity="center"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
 
     <LinearLayout
         android:id="@+id/lin1"
@@ -11,60 +11,57 @@
         android:layout_marginTop="50dp"
         android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:text="Notification Settings "
-        />
-
-    <RadioGroup
-        android:id="@+id/radio_grp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RadioButton
-            android:id="@+id/bytextmsg"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:checked="true"
-            android:text="I would like to receive rental updates by text message "
-           />
+            android:text="Notification Settings "
+            android:textSize="17sp"
+            android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/bymail"
+        <RadioGroup
+            android:id="@+id/radio_grp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:checked="false"
-            android:text="I would like to receive rental updates by email"
-            />
+            android:orientation="vertical">
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/bytextmsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:checked="true"
+                android:text="I would like to receive rental updates by text message " />
+
+            <RadioButton
+                android:id="@+id/bymail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:checked="false"
+                android:text="I would like to receive rental updates by email" />
+
+        </RadioGroup>
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_below="@+id/lin1"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin1"
         android:layout_marginTop="29dp"
-        android:gravity="center"
-        android:layout_height="wrap_content">
+        android:gravity="center">
 
 
         <Button
             android:id="@+id/btnsubmit"
+            style="@style/DefaultButton"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            style="@style/DefaultButton"
             android:padding="10dp"
             android:text="Save"
             android:textSize="20sp"

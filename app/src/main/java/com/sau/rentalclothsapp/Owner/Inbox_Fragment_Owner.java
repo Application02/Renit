@@ -22,6 +22,7 @@ import com.sau.rentalclothsapp.R;
 public class Inbox_Fragment_Owner extends Fragment {
 
     View view;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,8 +38,9 @@ public class Inbox_Fragment_Owner extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.inbox_fragment_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        super.onCreateOptionsMenu(menu, inflater);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void init() {
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_owner);
