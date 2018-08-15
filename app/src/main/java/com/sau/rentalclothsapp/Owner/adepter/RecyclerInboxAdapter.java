@@ -1,4 +1,4 @@
-package com.sau.rentalclothsapp.Renter.adepter;
+package com.sau.rentalclothsapp.Owner.adepter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,27 +7,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sau.rentalclothsapp.R;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter {
-        ArrayList personNames;
-        Context context;
-public CustomAdapter(Context context/*, ArrayList personNames*/) {
+public class RecyclerInboxAdapter extends RecyclerView.Adapter {
+    ArrayList personNames;
+    Context context;
+    public RecyclerInboxAdapter(Context context/*, ArrayList personNames*/) {
         this.context = context;
         this.personNames = personNames;
-        }
-@Override
-public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    }
+    @Override
+    public RecyclerInboxAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // infalte the item Layout
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_list_row, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        MyViewHolder vh = new MyViewHolder(v); // pass the view to View Holder
-        return vh;
-        }
+
+        MyViewHolder mv = new MyViewHolder(v);
+        return mv;
+    }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -43,17 +43,18 @@ public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         });
     }
 
-@Override
-public int getItemCount() {
-       // return personNames.size();
-    return 10;
+    @Override
+    public int getItemCount() {
+        // return personNames.size();
+        return 10;
+    }
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView name;// init the item view's
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            // get the reference of item view's
+            //  name = (TextView) itemView.findViewById(R.id.name);
         }
-public class MyViewHolder extends RecyclerView.ViewHolder {
-    TextView name;// init the item view's
-    public MyViewHolder(View itemView) {
-        super(itemView);
-        // get the reference of item view's
-      //  name = (TextView) itemView.findViewById(R.id.name);
     }
 }
-}
+

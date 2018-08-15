@@ -65,8 +65,23 @@ public class RegisterActivity extends AppCompatActivity {
        // txtSelectValue = findViewById(R.id.txtSlectValue);
 
         radioGroup = (RadioGroup) findViewById(R.id.typeGroup);
-        renter = findViewById(R.id.renter);
+        renter = radioGroup.findViewById(R.id.renter);
         renter.setChecked(true);
+        owner = radioGroup.findViewById(R.id.owner);
+        renter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item="Renter";
+
+
+            }
+        });
+        owner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item="Owner";
+            }
+        });
         //Getting instance of CheckBoxes and Button from the activty_main.xml file
         space = (CheckBox) findViewById(R.id.checkBox);
         equipment = (CheckBox) findViewById(R.id.checkBox2);
@@ -133,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
                     surname = edtsurname.getText().toString();
                     email = edtmail.getText().toString();
 
-                    if (renter.isChecked())
+/*                    if (renter.isChecked())
                     {
                         item="Renter";
                     }
@@ -141,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
                     {
                         item="Owner";
 
-                    }
+                    }*/
 
                     if (isValidEmailAddress(email)) {
                         if (edtpassword.getText().toString().equals(edtconfirmpassword.getText().toString())) {

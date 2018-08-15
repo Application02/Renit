@@ -75,7 +75,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         try {
             whichActivity = pref.getString("type", null);
             Log.d(TAG, "whichActivity: " + whichActivity);
-            editor.commit();
 
             category1 = pref.getString("space",null);
             category2 = pref.getString("equipment",null);
@@ -83,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
             Log.d(TAG, "onCreate: "+category1+category2+category3);
 
+            editor.commit();
 
         } catch (Exception e) {
             e.printStackTrace();

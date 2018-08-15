@@ -64,7 +64,7 @@ public class OwnerActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
 
 
-        txtUname = findViewById(R.id.txtUname);
+        txtUname = findViewById(R.id.txtUnameOwner);
         txtheadername = headerView.findViewById(R.id.txtheadername);
         txt_img_home = findViewById(R.id.txt_img_homeOwner);
         txt_img_inbox = findViewById(R.id.txt_img_inboxOwner);

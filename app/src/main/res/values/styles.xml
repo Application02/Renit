@@ -7,6 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/gray</item>
 
+       <!--Solve this error Failed to find style 'coordinatorLayoutStyle' in current theme-->
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
+
 
         <item name="windowActionBarOverlay">true</item>
     </style>

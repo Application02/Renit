@@ -8,18 +8,36 @@
     tools:context=".Owner.OwnerActivity"
     tools:showIn="@layout/app_bar_owner">
 
-    <TextView
-        android:id="@+id/txtUnameOwner"
-        android:hint="Welcome User"
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"/>
+        android:layout_height="1dp"
+        android:background="@color/white"/>
+    <RelativeLayout
+        android:gravity="center"
+        android:id="@+id/txtUnameuser"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtUnameOwner"
+            android:layout_margin="5dp"
+            android:hint="Welcome User"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"/>
+    </RelativeLayout>
+
 
     <FrameLayout
         android:id="@+id/framlayoutOwner"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/txtUnameOwner"
+        android:layout_below="@+id/txtUnameuser"
         android:layout_above="@+id/ll_viewOwner"
         android:layout_gravity="top"
         android:layout_weight="8"
@@ -39,7 +57,7 @@
     <LinearLayout
         android:id="@+id/ll_botom_barOwner"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="#ffffff"
         android:gravity="center"
