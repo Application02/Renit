@@ -13,12 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.sau.rentalclothsapp.R;
 
@@ -31,7 +29,6 @@ public class Equipment_Fragment extends Fragment {
     RadioButton yes,no;
     RadioGroup radio_grp;
     TextView txtStartDate,txtEndDate,txtStartTime,txtEndTime;
-    Button btnStartDatePicker,btnEndDatePicker;
     private int mYear, mMonth, mDay, mYear1, mMonth1, mDay1,mHour, mMinute,mHour1, mMinute1;
 
     @Override
@@ -45,9 +42,6 @@ public class Equipment_Fragment extends Fragment {
 
         txtStartDate= view.findViewById(R.id.in_startdate);
         txtEndDate= view.findViewById(R.id.in_enddate);
-
-      //  btnStartDatePicker=view.findViewById(R.id.btn_startdate);
-       // btnEndDatePicker=view.findViewById(R.id.btn_enddate);
 
         txtStartTime= view.findViewById(R.id.in_starttime);
         txtEndTime= view.findViewById(R.id.in_endtime);

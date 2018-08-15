@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 
 import com.sau.rentalclothsapp.R;
 
@@ -26,7 +26,7 @@ public class Space_Fragment extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.space_fragment, container, false);
 
-         spin = (Spinner) view.findViewById(R.id.spinneractivities);
+         spin = view.findViewById(R.id.spinneractivities);
 
 
         SelectActivities();

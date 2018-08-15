@@ -18,11 +18,21 @@
             android:icon="@drawable/inboxdark"
             android:title="Inbox" />
 
+        <item
+            android:id="@+id/nav_sales"
+            android:icon="@drawable/sales"
+            android:title="Sales" />
+
 
         <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/settingdark"
             android:title="Setting" />
+
+        <item
+            android:id="@+id/nav_myrenit"
+            android:icon="@drawable/myrenit"
+            android:title="My Renit" />
 
         <item
             android:id="@+id/nav_share"

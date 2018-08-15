@@ -2,8 +2,6 @@ package com.sau.rentalclothsapp.Renter;
 
 
 import android.app.DatePickerDialog;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,13 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
@@ -43,8 +38,8 @@ public class Dresses_Fragment extends Fragment {
     RadioGroup radio_grp;
 
 
-    Button btnDatePicker, btnTimePicker;
-    TextView txtDate, txtTime;
+
+    TextView txtDate;
 
     private int mYear, mMonth, mDay, mHour, mMinute;
 
@@ -61,13 +56,13 @@ public class Dresses_Fragment extends Fragment {
         view = inflater.inflate(R.layout.dresses_fragment, container, false);
 
         imgcolor = view.findViewById(R.id.imgcolor);
-        spin = (Spinner) view.findViewById(R.id.spinnerRentaldays);
+        spin =  view.findViewById(R.id.spinnerRentaldays);
         radio_grp= view.findViewById(R.id.shipment);
         yes = radio_grp.findViewById(R.id.yes);
         no = radio_grp.findViewById(R.id.no);
 
       //  btnDatePicker=(Button)view.findViewById(R.id.btn_date);
-        txtDate=(TextView) view.findViewById(R.id.in_date);
+        txtDate= view.findViewById(R.id.in_date);
 
 
 

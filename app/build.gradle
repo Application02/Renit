@@ -44,7 +44,6 @@ dependencies {
 
     implementation 'uk.co.jordanrobinson:android-color-picker:1.0.2'
 
-
     //for Inbox
     // retrofit, gson
     implementation 'com.google.code.gson:gson:2.8.2'
@@ -52,9 +51,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-
-
-
 
 
 }

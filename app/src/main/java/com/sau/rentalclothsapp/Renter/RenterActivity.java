@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -41,7 +40,6 @@ import java.io.InputStream;
 
 public class RenterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    JSONObject response, profile_pic_data, profile_pic_url;
     SharedPreferences pref;
     String displayname,displaysurname;
     private static final String TAG = "RenterActivity";
@@ -62,7 +60,7 @@ public class RenterActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_renter);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        toolbar =findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
 

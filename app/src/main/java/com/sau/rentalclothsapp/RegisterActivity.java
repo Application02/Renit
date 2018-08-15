@@ -31,12 +31,9 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
-   // Spinner spinner;
-   // TextView txtSelectValue;
     EditText edtfirstname, edtsurname, edtmail, edtphoneno, edtpassword, edtconfirmpassword;
     String firstname = null, surname = null;
     String email = null;
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String item = "Renter";
 
     RadioButton renter,owner;
@@ -48,7 +45,6 @@ public class RegisterActivity extends AppCompatActivity {
     LinearLayout checkboxlayout;
     View view1;
 
-    String Flag = "0";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -60,9 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         TextView textViewLogin = (TextView) findViewById(R.id.textViewLogin);
-    /*    spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);*/
-       // txtSelectValue = findViewById(R.id.txtSlectValue);
 
         radioGroup = (RadioGroup) findViewById(R.id.typeGroup);
         renter = radioGroup.findViewById(R.id.renter);
@@ -98,20 +91,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
-/*
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Renter");
-        categories.add("Owner");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);*/
-
-        // attaching data adapter to spinner
-      //  spinner.setAdapter(dataAdapter);
 
         textViewLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,14 +100,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
-       /* txtSelectValue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                spinner.setVisibility(View.VISIBLE);
-                spinner.performClick();
-                txtSelectValue.setVisibility(View.GONE);
-            }
-        });*/
 
 
         intlaiton();
@@ -148,15 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
                     surname = edtsurname.getText().toString();
                     email = edtmail.getText().toString();
 
-/*                    if (renter.isChecked())
-                    {
-                        item="Renter";
-                    }
-                    else
-                    {
-                        item="Owner";
 
-                    }*/
 
                     if (isValidEmailAddress(email)) {
                         if (edtpassword.getText().toString().equals(edtconfirmpassword.getText().toString())) {

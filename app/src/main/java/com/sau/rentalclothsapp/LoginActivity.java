@@ -1,25 +1,17 @@
 package com.sau.rentalclothsapp;
 
 
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
-import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,19 +23,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
 import com.sau.rentalclothsapp.Owner.OwnerActivity;
 import com.sau.rentalclothsapp.Renter.RenterActivity;
-
-import org.json.JSONObject;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 
@@ -127,16 +109,30 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 */
                 //this code for only testing time after texsting remove this and remove commite above code
 
+                try{
+                    switch (whichActivity) {
+                        case "Renter": {
+                            Intent intent = new Intent(getApplicationContext(), RenterActivity.class);
+                            startActivity(intent);
+                            finish();
+                            break;
+                        }
+                        case "Owner": {
+                            Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                            startActivity(intent);
+                            finish();
+                            break;
+                        }
+                        default:
+                            Toast.makeText(LoginActivity.this, "Register first", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
 
-                if (whichActivity.equals("Renter")) {
-                    Intent intent = new Intent(getApplicationContext(), RenterActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
-                    startActivity(intent);
-                    finish();
+                }catch (NullPointerException e)
+                {
+                    e.printStackTrace();
                 }
+
             }
 
 

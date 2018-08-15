@@ -272,7 +272,18 @@ public class OwnerActivity extends AppCompatActivity
 
 
 
-        } else if (id == R.id.nav_setting) {
+        }else if (id == R.id.nav_sales) {
+            fragment = new Sales_Fragment_Owner();
+
+
+            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
+            txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
+            txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
+
+
+
+        }else if (id == R.id.nav_setting) {
             fragment = new Setting_Fragment_Owner();
 
             txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
@@ -281,7 +292,17 @@ public class OwnerActivity extends AppCompatActivity
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settingdark), null, null);
 
 
-        } else if (id == R.id.nav_share) {
+        }else if (id == R.id.nav_myrenit) {
+            fragment = new MyRenit_Fragment_Owner();
+
+            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
+            txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
+            txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
+
+
+        }
+        else if (id == R.id.nav_share) {
             try {
                 Intent i = new Intent(Intent.ACTION_SEND);
                 i.setType("text/plain");

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
@@ -15,8 +14,8 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
 
-        Button backToLoginBtn = (Button) findViewById(R.id.backToLoginBtn);
-        Button txtsubmit = (Button) findViewById(R.id.txtsubmit);
+        Button backToLoginBtn =  findViewById(R.id.backToLoginBtn);
+        Button txtsubmit = findViewById(R.id.txtsubmit);
        /* backToLoginBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.leftarrow, 0, 0, 0);
         txtsubmit.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rightarrow, 0, 0, 0);*/
 
