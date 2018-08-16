@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sau.rentalclothsapp.LoginActivity;
+import com.sau.rentalclothsapp.Owner.OwnerActivity;
 import com.sau.rentalclothsapp.R;
 
 import java.io.FileNotFoundException;
@@ -37,6 +39,7 @@ import java.io.InputStream;
 public class RenterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     public static final int PICK_IMAGE = 0;
+    private static final int TAKE_PICTURE = 1;
     private static final String TAG = "RenterActivity";
     SharedPreferences pref;
     String displayname, displaysurname;
@@ -45,6 +48,7 @@ public class RenterActivity extends AppCompatActivity
     Fragment fragment = null;
     Toolbar toolbar;
     private Uri imageUri;
+    android.app.AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +66,54 @@ public class RenterActivity extends AppCompatActivity
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+
+                // get prompts.xml view
+                LayoutInflater li = LayoutInflater.from(getApplicationContext());
+                View promptsView = li.inflate(R.layout.profile_image_dailog, null);
+                final android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(RenterActivity.this);
+                alertDialog.setView(promptsView);
+                // alertDialog.setTitle("Update Profile");
+                alertDialog.setMessage("Update Profile Image");
+
+                TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
+                TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
+                TextView txtcancel = promptsView.findViewById(R.id.txtcancel);
+                txtcamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, TAKE_PICTURE);
+
+                    }
+                });
+                txtgallery.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        intent1.setType("image/*");
+                        startActivityForResult(intent1, PICK_IMAGE);
+                    }
+                });
+                txtcancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alert.dismiss();
+                    }
+                });
+               /* alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    } });*/
+
+                // alertDialog.show();
+
+                alert = alertDialog.create();
+                alert.show();
+               /* Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 intent1.setType("image/*");
-                startActivityForResult(intent1, PICK_IMAGE);
+                startActivityForResult(intent1, PICK_IMAGE);*/
 
             }
         });
@@ -137,11 +186,22 @@ public class RenterActivity extends AppCompatActivity
                         final InputStream inputStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         imageView.setImageBitmap(bitmap);
+                        alert.dismiss();
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
 
                     }
+                }
+            }
+
+            case TAKE_PICTURE: {
+                if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK && data != null) {
+
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    imageView.setImageBitmap(bitmap);
+                    alert.dismiss();
+
                 }
             }
         }
@@ -315,6 +375,16 @@ public class RenterActivity extends AppCompatActivity
 
             android.app.AlertDialog alertDialog = builder.create();
             alertDialog.show();
+
+        }else if (id == R.id.nav_myrenit) {
+
+            fragment = new Renit_Fragment_Renter();
+
+            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
+            txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
+            txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
+
 
         }
 

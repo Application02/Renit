@@ -15,17 +15,20 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sau.rentalclothsapp.LoginActivity;
 import com.sau.rentalclothsapp.R;
@@ -36,14 +39,17 @@ import java.io.InputStream;
 public class OwnerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     public static final int PICK_IMAGE = 0;
+    private static final int TAKE_PICTURE = 1;
     private static final String TAG = "OwnerActivity";
     ;
-    TextView txtUname, txtheadername, txt_img_home, txt_img_inbox, txt_img_pro, txt_img_setting;
+    TextView txtUname, txtheadername, txt_img_myRenit, txt_img_inbox, txt_img_pro, txt_img_setting;
     SharedPreferences pref;
     String displayname, displaysurname;
     ImageView imageView;
     Fragment fragment = null;
     private Uri imageUri;
+    AlertDialog alert;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,23 +64,66 @@ public class OwnerActivity extends AppCompatActivity
 
         txtUname = findViewById(R.id.txtUnameOwner);
         txtheadername = headerView.findViewById(R.id.txtheadername);
-        txt_img_home = findViewById(R.id.txt_img_homeOwner);
+        txt_img_myRenit = findViewById(R.id.txt_img_myRenit);
         txt_img_inbox = findViewById(R.id.txt_img_inboxOwner);
         txt_img_pro = findViewById(R.id.txt_img_proOwner);
         txt_img_setting = findViewById(R.id.txt_img_settingOwner);
 
-        txt_img_home.setOnClickListener(this);
+        txt_img_myRenit.setOnClickListener(this);
         txt_img_inbox.setOnClickListener(this);
         txt_img_pro.setOnClickListener(this);
         txt_img_setting.setOnClickListener(this);
 
-        imageView = headerView.findViewById(R.id.imageView);
+        imageView = headerView.findViewById(R.id.imageViewowner);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                intent1.setType("image/*");
-                startActivityForResult(intent1, PICK_IMAGE);
+
+                // get prompts.xml view
+                LayoutInflater li = LayoutInflater.from(getApplicationContext());
+                View promptsView = li.inflate(R.layout.profile_image_dailog, null);
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OwnerActivity.this);
+                alertDialog.setView(promptsView);
+                // alertDialog.setTitle("Update Profile");
+                alertDialog.setMessage("Update Profile Image");
+
+                TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
+                TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
+                TextView txtcancel = promptsView.findViewById(R.id.txtcancel);
+                txtcamera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, TAKE_PICTURE);
+
+                    }
+                });
+                txtgallery.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        intent1.setType("image/*");
+                        startActivityForResult(intent1, PICK_IMAGE);
+                    }
+                });
+                txtcancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alert.dismiss();
+                    }
+                });
+               /* alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    } });*/
+
+              // alertDialog.show();
+
+               alert = alertDialog.create();
+                alert.show();
+
+
 
             }
         });
@@ -100,13 +149,13 @@ public class OwnerActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        fragment = new Home_Fragment_Owner();
+        fragment = new Inbox_Fragment_Owner();
         FragmentManager manager = getFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.framlayoutOwner, fragment);
         transaction.commit();
-        txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homedark), null, null);
-        txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
+        txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
+        txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxdark), null, null);
         txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
         txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
 
@@ -165,11 +214,22 @@ public class OwnerActivity extends AppCompatActivity
                         final InputStream inputStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                         imageView.setImageBitmap(bitmap);
+                        alert.dismiss();
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
 
                     }
+                }
+
+            }
+            case TAKE_PICTURE: {
+                if (requestCode == TAKE_PICTURE && resultCode == RESULT_OK && data != null) {
+
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    imageView.setImageBitmap(bitmap);
+                    alert.dismiss();
+
                 }
             }
         }
@@ -234,11 +294,11 @@ public class OwnerActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            fragment = new Home_Fragment_Owner();
+        if (id == R.id.nav_myrenit) {
+            fragment = new MyRenit_Fragment_Owner();
 
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homedark), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitdark), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -247,7 +307,7 @@ public class OwnerActivity extends AppCompatActivity
         } else if (id == R.id.nav_profile) {
             fragment = new Profile_Fragment_Owner();
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profiledark), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -257,7 +317,7 @@ public class OwnerActivity extends AppCompatActivity
             fragment = new Inbox_Fragment_Owner();
 
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxdark), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -267,7 +327,7 @@ public class OwnerActivity extends AppCompatActivity
             fragment = new Sales_Fragment_Owner();
 
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -276,7 +336,7 @@ public class OwnerActivity extends AppCompatActivity
         } else if (id == R.id.nav_setting) {
             fragment = new Setting_Fragment_Owner();
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settingdark), null, null);
@@ -285,7 +345,7 @@ public class OwnerActivity extends AppCompatActivity
         } else if (id == R.id.nav_myrenit) {
             fragment = new MyRenit_Fragment_Owner();
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -346,20 +406,20 @@ public class OwnerActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
 
-        if (view == txt_img_home) {
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homedark), null, null);
+        if (view == txt_img_myRenit) {
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitdark), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
 
-            fragment = new Home_Fragment_Owner();
+            fragment = new MyRenit_Fragment_Owner();
             FragmentManager manager = getFragmentManager();
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.replace(R.id.framlayoutOwner, fragment);
             transaction.commit();
         } else if (view == txt_img_inbox) {
 
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxdark), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -371,7 +431,7 @@ public class OwnerActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (view == txt_img_pro) {
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profiledark), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
@@ -384,7 +444,7 @@ public class OwnerActivity extends AppCompatActivity
             transaction.commit();
 
         } else if (view == txt_img_setting) {
-            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_myRenit.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.myrenitlight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
             txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
             txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settingdark), null, null);

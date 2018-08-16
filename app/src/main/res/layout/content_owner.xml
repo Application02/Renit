@@ -66,15 +66,7 @@
         android:orientation="horizontal"
         android:weightSum="4">
 
-        <TextView
-            android:id="@+id/txt_img_homeOwner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/homelight"
-            android:gravity="center"
-            android:text="Home"
-            android:textColor="@color/colorPrimary" />
+
 
         <TextView
             android:id="@+id/txt_img_inboxOwner"
@@ -94,6 +86,16 @@
             android:drawableTop="@drawable/profilelight"
             android:gravity="center"
             android:text="Profile "
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/txt_img_myRenit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/myrenitlight"
+            android:gravity="center"
+            android:text="MyRenit"
             android:textColor="@color/colorPrimary" />
 
         <TextView

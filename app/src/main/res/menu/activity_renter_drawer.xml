@@ -18,6 +18,11 @@
             android:icon="@drawable/inboxdark"
             android:title="Inbox" />
 
+        <item
+            android:id="@+id/nav_myrenit"
+            android:icon="@drawable/myrenitdark"
+            android:title="Renit" />
+
 
         <item
             android:id="@+id/nav_setting1"
