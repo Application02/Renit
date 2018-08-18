@@ -30,7 +30,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sau.rentalclothsapp.LoginActivity;
-import com.sau.rentalclothsapp.Owner.OwnerActivity;
 import com.sau.rentalclothsapp.R;
 
 import java.io.FileNotFoundException;
@@ -379,6 +378,17 @@ public class RenterActivity extends AppCompatActivity
         }else if (id == R.id.nav_myrenit) {
 
             fragment = new Renit_Fragment_Renter();
+
+            txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
+            txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);
+            txt_img_pro.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.profilelight), null, null);
+            txt_img_setting.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.settinglight), null, null);
+
+
+        }
+        else if (id == R.id.nav_service) {
+            fragment = new Service_Fragment();
+
 
             txt_img_home.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.homelight), null, null);
             txt_img_inbox.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.inboxlight), null, null);

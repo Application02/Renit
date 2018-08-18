@@ -1,9 +1,12 @@
 package com.sau.rentalclothsapp.Renter;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.colorpicker.ColorPickerDialog;
 import com.android.colorpicker.ColorPickerSwatch;
@@ -34,11 +39,12 @@ public class Dresses_Fragment extends Fragment {
     android.app.FragmentManager fm;
     Spinner spin;
     RadioButton yes, no;
+    AlertDialog alert;
     RadioGroup radio_grp;
 
 
     TextView txtDate;
-    String[] days = {"1", "2", "3", "4", "5", "6", "7", "other"};
+    String[] days = {"1", "2", "3", "4", "5","other"};
     private int mYear, mMonth, mDay, mHour, mMinute;
     private DatePicker datePicker;
     private Calendar calendar;
@@ -135,6 +141,44 @@ public class Dresses_Fragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 //Toast.makeText(getContext(),days[position] , Toast.LENGTH_LONG).show();
+                if (days[position].equals("other"))
+                {
+                    // get prompts.xml view
+                    LayoutInflater li = LayoutInflater.from(getContext());
+                    View promptsView = li.inflate(R.layout.dresses_spinner_dailog, null);
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                    alertDialog.setView(promptsView);
+                    // alertDialog.setTitle("Update Profile");
+                    alertDialog.setMessage("Update Profile Image");
+
+                    Button btnsubmit = (Button) promptsView.findViewById(R.id.btnsubmitdailog);
+                   /* TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
+                    TextView txtcancel = promptsView.findViewById(R.id.txtcancel);*/
+                    btnsubmit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            alert.dismiss();
+
+                        }
+                    });
+                   /* txtgallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Toast.makeText(getActivity(), "Gallery", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    txtcancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alert.dismiss();
+                        }
+                    });*/
+
+                    alert = alertDialog.create();
+                    alert.show();
+                }
             }
 
             @Override

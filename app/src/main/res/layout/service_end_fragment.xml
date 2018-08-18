@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+
+
+
+    <TextView
+        android:id="@+id/txttitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="26dp"
+        android:text="To quit the item rented before its end date"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txttitle"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="select item"
+            android:textSize="17sp" />
+
+        <Spinner
+            android:id="@+id/serviceproblem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp">
+
+
+        </Spinner>
+
+    </LinearLayout>
+
+
+
+    <EditText
+        android:id="@+id/edtmsg"
+        android:paddingTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin1"
+        android:hint="send message to the owner"
+        android:textSize="17sp" />
+
+
+
+
+
+    <Button
+        android:id="@+id/btnsubmit"
+        style="@style/DefaultButton"
+        android:layout_width="90dp"
+        android:paddingTop="16dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtmsg"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        android:text="Send"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+
+</RelativeLayout>
