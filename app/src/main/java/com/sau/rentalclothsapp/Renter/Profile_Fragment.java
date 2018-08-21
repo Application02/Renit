@@ -44,7 +44,7 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener {
 
         profile = view.findViewById(R.id.imageViewrenterprofile);
         profile.setOnClickListener(this);
-        getActivity().setTitle("Profile");
+        getActivity().setTitle(" Profile");
         return view;
 
     }

@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,21 +20,30 @@ import android.widget.TimePicker;
 
 import com.sau.rentalclothsapp.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class Equipment_Fragment extends Fragment {
 
     View view;
-
+    String oldTime=null;
     RadioButton yes, no;
     RadioGroup radio_grp;
-    TextView txtStartDate, txtEndDate, txtStartTime, txtEndTime;
+    long startDateTime;
+    long oldMillis;
+    TextView txtStartDate,in_startdate1, txtEndDate, txtStartTime, txtEndTime;
     private int mYear, mMonth, mDay, mYear1, mMonth1, mDay1, mHour, mMinute, mHour1, mMinute1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.equipment_fragment, container, false);
+        getActivity().setTitle(" Home");
+       // getActivity().setTitle(" ");
 
         radio_grp = view.findViewById(R.id.transportation);
         yes = radio_grp.findViewById(R.id.yes);
@@ -45,6 +55,7 @@ public class Equipment_Fragment extends Fragment {
         txtStartTime = view.findViewById(R.id.in_starttime);
         txtEndTime = view.findViewById(R.id.in_endtime);
 
+        txtEndDate.setEnabled(false);
 
         transportationrequired();
         selectdate();
@@ -62,6 +73,7 @@ public class Equipment_Fragment extends Fragment {
     }
 
     private void selecttime() {
+
 
         txtStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +148,7 @@ public class Equipment_Fragment extends Fragment {
 
     private void selectdate() {
 
+
         txtStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,6 +160,7 @@ public class Equipment_Fragment extends Fragment {
                 mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
+
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                         new DatePickerDialog.OnDateSetListener() {
 
@@ -156,17 +170,51 @@ public class Equipment_Fragment extends Fragment {
 
                                 txtStartDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
+                                oldTime = txtStartDate.getText().toString();
+
+                                Log.d(TAG, "onDateSet: "+oldTime);
+                                txtEndDate.setEnabled(true);
+                                txtEndDate.setText("DD/MM/YYYY");
+
                             }
                         }, mYear, mMonth, mDay);
+
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                formatter.setLenient(false);
+
+                //disable previous dates
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                startDateTime = c.getTimeInMillis();
+
+              //  Log.e(TAG, "onClick: " +  startDateTime);
                 datePickerDialog.show();
+
 
             }
         });
 
 
         txtEndDate.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
+                //this code for set date related previous date
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                formatter.setLenient(false);
+                if (!txtStartDate.getText().toString().isEmpty() || !txtStartDate.getText().toString().equals(" ") || txtStartDate.getText().toString() != "")
+                {
+
+                    Date oldDate = null;
+                    try {
+                        oldDate = formatter.parse(oldTime);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    oldMillis = oldDate.getTime();
+                    Log.d(TAG, "oldMillis: "+oldMillis);
+                }
 
                 // Get Current Date
                 final Calendar c = Calendar.getInstance();
@@ -186,10 +234,13 @@ public class Equipment_Fragment extends Fragment {
 
                             }
                         }, mYear1, mMonth1, mDay1);
+                //disable previous dates
+                datePickerDialog.getDatePicker().setMinDate(oldMillis + 86400000);
                 datePickerDialog.show();
 
             }
         });
+
 
     }
 

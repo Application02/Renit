@@ -40,7 +40,7 @@ public class Profile_Fragment_Owner extends Fragment implements View.OnClickList
         view = inflater.inflate(R.layout.profile_fragment_owner, container, false);
         profile = view.findViewById(R.id.imageViewownerprofile);
         profile.setOnClickListener(this);
-        getActivity().setTitle("Profile");
+        getActivity().setTitle(" Profile");
         return view;
 
     }

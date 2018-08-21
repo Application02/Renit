@@ -20,7 +20,7 @@ public class Home_Fragment_Owner extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.home_fragment_owner, container, false);
-        getActivity().setTitle("Home");
+        getActivity().setTitle(" Home");
 
         return view;
 

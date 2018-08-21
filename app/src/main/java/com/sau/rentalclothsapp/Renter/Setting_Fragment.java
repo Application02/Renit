@@ -29,7 +29,7 @@ public class Setting_Fragment extends Fragment {
         bytextmsg = radio_grp.findViewById(R.id.bytextmsg);
         bymail = radio_grp.findViewById(R.id.bymail);
 
-        getActivity().setTitle("Setting");
+        getActivity().setTitle(" Setting");
 
         Notificationsettings();
         return view;

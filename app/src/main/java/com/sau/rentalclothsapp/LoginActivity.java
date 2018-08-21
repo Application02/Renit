@@ -37,6 +37,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     Button btnLogin;
     EditText edtloginmail, edtloginpwd;
 
+    SharedPreferences preferences;
+
+
 
     Spinner mSpinner;
     TextView txtSelectValue;
@@ -56,6 +59,34 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        //sharedpreference for check user already login or not
+        preferences = getApplicationContext().getSharedPreferences("logindata", 0);
+        // SharedPreferences.Editor editor = pref.edit();
+
+        try{
+            preferences.getString("value", null);
+
+            String temp =  preferences.getString("value", null);
+
+            if (temp.equals("1"))
+            {
+                Intent i = new Intent(getApplicationContext(),OwnerActivity.class);
+                startActivity(i);
+                finish();
+            }
+            else if (temp.equals("2"))
+            {
+                Intent intent = new Intent(getApplicationContext(),RenterActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+
+        }catch (Exception e){
+
+        }
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = pref.edit();
@@ -139,7 +170,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         });
         TextView textViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
-        textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>First time here? </font><font color='#079A49'>Sign Up</font>"));
+        textViewCreateAccount.setText(fromHtml("<font color='#ffffff'>First time here? </font><font color='#079A49'>Register</font>"));
         textViewCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

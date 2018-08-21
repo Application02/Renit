@@ -34,7 +34,9 @@
             android:icon="@drawable/myrenitdark"
             android:title="My Renit" />
 
+        <!-- share option invisible-->
         <item
+            android:visible="false"
             android:id="@+id/nav_share"
             android:icon="@drawable/shareblue"
             android:title="Share" />
@@ -42,7 +44,7 @@
         <item
             android:id="@+id/nav_SignOut"
             android:icon="@drawable/signoutblue"
-            android:title="Sign Out" />
+            android:title="Log Out" />
     </group>
 
 </menu>

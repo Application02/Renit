@@ -27,7 +27,7 @@ public class Setting_Fragment_Owner extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.setting_fragment_owner, container, false);
-        getActivity().setTitle("Setting");
+        getActivity().setTitle(" Setting");
 
 
         radio_grp = view.findViewById(R.id.radio_grp1);

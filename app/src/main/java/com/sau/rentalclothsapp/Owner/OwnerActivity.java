@@ -9,11 +9,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,6 +52,8 @@ public class OwnerActivity extends AppCompatActivity
     Fragment fragment = null;
     private Uri imageUri;
     AlertDialog alert;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor1;
 
 
     @Override
@@ -58,6 +63,18 @@ public class OwnerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        //icon set in title bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(R.mipmap.ic_appicon_round);
+
+
+        //shared pref for Check user already login or first time
+        preferences = getApplicationContext().getSharedPreferences("logindata", 0);
+        editor1 = preferences.edit();
+        editor1.putString("value", "1");
+        editor1.apply();// Storing string
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
 
@@ -75,58 +92,80 @@ public class OwnerActivity extends AppCompatActivity
         txt_img_setting.setOnClickListener(this);
 
         imageView = headerView.findViewById(R.id.imageViewowner);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                // get prompts.xml view
-                LayoutInflater li = LayoutInflater.from(getApplicationContext());
-                View promptsView = li.inflate(R.layout.profile_image_dailog, null);
-                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OwnerActivity.this);
-                alertDialog.setView(promptsView);
-                // alertDialog.setTitle("Update Profile");
-                alertDialog.setMessage("Update Profile Image");
 
-                TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
-                TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
-                TextView txtcancel = promptsView.findViewById(R.id.txtcancel);
-                txtcamera.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{android.Manifest.permission.INTERNET, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_NETWORK_STATE}, 100);
 
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent, TAKE_PICTURE);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                    }
-                });
-                txtgallery.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        intent1.setType("image/*");
-                        startActivityForResult(intent1, PICK_IMAGE);
-                    }
-                });
-                txtcancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        alert.dismiss();
-                    }
-                });
+                    // get prompts.xml view
+                    LayoutInflater li = LayoutInflater.from(getApplicationContext());
+                    View promptsView = li.inflate(R.layout.profile_image_dailog, null);
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OwnerActivity.this);
+                    alertDialog.setView(promptsView);
+                    // alertDialog.setTitle("Update Profile");
+                    alertDialog.setMessage("Update Profile Image");
+
+                    TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
+                    TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
+                    TextView txtcancel = promptsView.findViewById(R.id.txtcancel);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{android.Manifest.permission.INTERNET, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_NETWORK_STATE}, 100);
+
+                        txtcamera.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(intent, TAKE_PICTURE);
+
+                            }
+                        });
+                        txtgallery.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                intent1.setType("image/*");
+                                startActivityForResult(intent1, PICK_IMAGE);
+                            }
+                        });
+                        txtcancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                alert.dismiss();
+                            }
+                        });
                /* alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         return;
                     } });*/
 
-              // alertDialog.show();
+                        // alertDialog.show();
 
-               alert = alertDialog.create();
-                alert.show();
+                        alert = alertDialog.create();
+                        alert.show();
+                    }
+                    else
+                    {
+
+                        Toast.makeText(OwnerActivity.this, "please give permition", Toast.LENGTH_SHORT).show();
+                    }
 
 
+                }
+            });
 
-            }
-        });
+        }
+        else
+        {
+
+            Toast.makeText(this, "please give permition", Toast.LENGTH_SHORT).show();
+        }
+
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = pref.edit();
         try {
@@ -246,14 +285,16 @@ public class OwnerActivity extends AppCompatActivity
         }
     }
 
-    @Override
+
+    //option menu for Exit
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.owner, menu);
         return true;
-    }
+    }*/
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -286,7 +327,7 @@ public class OwnerActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -372,6 +413,8 @@ public class OwnerActivity extends AppCompatActivity
                     .setPositiveButton(Html.fromHtml("Yes"), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            editor1.clear();
+                            editor1.commit();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                             finish();

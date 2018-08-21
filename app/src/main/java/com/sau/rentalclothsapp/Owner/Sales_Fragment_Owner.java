@@ -24,7 +24,7 @@ public class Sales_Fragment_Owner extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.sales_fragment_owner, container, false);
-        getActivity().setTitle("Sales");
+        getActivity().setTitle(" Sales");
 
         gridView = view.findViewById(R.id.gridView1);
         ItemImages();

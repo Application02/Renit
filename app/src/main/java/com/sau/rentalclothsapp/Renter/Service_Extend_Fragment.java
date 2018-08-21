@@ -28,7 +28,7 @@ public class Service_Extend_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.service_extend_fragment, container, false);
-
+        getActivity().setTitle(" Service");
         spiner = view.findViewById(R.id.serviceproblem);
         selectdays();
 

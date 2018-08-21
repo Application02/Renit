@@ -200,7 +200,7 @@
                 android:id="@+id/edtphoneno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="PhoneNumber"
+                android:hint="Phone Number"
                 android:inputType="phone"
                 android:maxLength="10"
                 android:textColor="@color/white" />
@@ -218,7 +218,7 @@
                 android:id="@+id/edtpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="password"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -235,7 +235,7 @@
                 android:id="@+id/edtconfirmpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm password"
+                android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:textColor="@color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -260,7 +260,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="BackToLogin"
+            android:text="Already Register"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

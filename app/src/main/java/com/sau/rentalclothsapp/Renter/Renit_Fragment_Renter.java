@@ -28,7 +28,7 @@ public class Renit_Fragment_Renter extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.renit_fragment_renter, container, false);
-        getActivity().setTitle("Renit");
+        getActivity().setTitle(" Renit");
 
         gridView = view.findViewById(R.id.gridView);
 

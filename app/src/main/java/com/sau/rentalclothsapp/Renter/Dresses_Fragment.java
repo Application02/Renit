@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +30,7 @@ import com.android.colorpicker.ColorPickerSwatch;
 import com.sau.rentalclothsapp.R;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 
 public class Dresses_Fragment extends Fragment {
@@ -37,7 +39,7 @@ public class Dresses_Fragment extends Fragment {
 
     at.markushi.ui.CircleButton imgcolor;
     android.app.FragmentManager fm;
-    Spinner spin;
+    Spinner spin,spinerSize;
     RadioButton yes, no;
     AlertDialog alert;
     RadioGroup radio_grp;
@@ -45,6 +47,7 @@ public class Dresses_Fragment extends Fragment {
 
     TextView txtDate;
     String[] days = {"1", "2", "3", "4", "5","other"};
+    String[] size = {"S","XS","M","L","XL","XXL"};
     private int mYear, mMonth, mDay, mHour, mMinute;
     private DatePicker datePicker;
     private Calendar calendar;
@@ -55,8 +58,11 @@ public class Dresses_Fragment extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.dresses_fragment, container, false);
 
+        getActivity().setTitle(" Home");
+       // getActivity().setTitle(" ");
         imgcolor = view.findViewById(R.id.imgcolor);
         spin = view.findViewById(R.id.spinnerRentaldays);
+        spinerSize = view.findViewById(R.id.spinnerSize);
         radio_grp = view.findViewById(R.id.shipment);
         yes = radio_grp.findViewById(R.id.yes);
         no = radio_grp.findViewById(R.id.no);
@@ -64,6 +70,8 @@ public class Dresses_Fragment extends Fragment {
         //  btnDatePicker=(Button)view.findViewById(R.id.btn_date);
         txtDate = view.findViewById(R.id.in_date);
 
+
+        selectsize();
 
         selectcolor();
 
@@ -76,6 +84,29 @@ public class Dresses_Fragment extends Fragment {
 
         return view;
 
+    }
+
+    private void selectsize() {
+
+
+        spinerSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+              //  Toast.makeText(getContext(),size[position] , Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, size);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        spinerSize.setAdapter(aa);
     }
 
 
@@ -199,6 +230,7 @@ public class Dresses_Fragment extends Fragment {
         colorPickerDialog.initialize(R.string.color_picker_default_title,
                 new int[]{
                         getResources().getColor(R.color.Black),
+                      //also use this  ContextCompat.getColor(Objects.requireNonNull(getContext()),R.color.Black),
                         /* getResources().getColor(R.color.Navy),*/
                         getResources().getColor(R.color.DarkBlue),
                         /* getResources().getColor(R.color.MediumBlue),*/
