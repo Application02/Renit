@@ -108,7 +108,7 @@ public class RenterActivity extends AppCompatActivity
                     final android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(RenterActivity.this);
                     alertDialog.setView(promptsView);
                     // alertDialog.setTitle("Update Profile");
-                    alertDialog.setMessage("Update Profile Image");
+                    alertDialog.setMessage("Update Profile Picture");
 
                     TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
                     TextView txtgallery = promptsView.findViewById(R.id.txtgallery);

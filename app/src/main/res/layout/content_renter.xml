@@ -128,7 +128,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/inboxlight"
             android:gravity="center"
-            android:text="InBox"
+            android:text="Messages"
             android:textColor="@color/colorPrimary" />
 
         <TextView

@@ -107,7 +107,7 @@ public class OwnerActivity extends AppCompatActivity
                     final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OwnerActivity.this);
                     alertDialog.setView(promptsView);
                     // alertDialog.setTitle("Update Profile");
-                    alertDialog.setMessage("Update Profile Image");
+                    alertDialog.setMessage("Update Profile Picture");
 
                     TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
                     TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
