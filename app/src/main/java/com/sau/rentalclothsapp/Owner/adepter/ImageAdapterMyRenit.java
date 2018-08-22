@@ -49,7 +49,6 @@ public class ImageAdapterMyRenit extends BaseAdapter {
 
     // Keep all Images in array
     public Integer[] mThumbIds = {
-            R.drawable.homedark, R.drawable.profiledark,
-            R.drawable.inboxdark
+            R.drawable.dress1, R.drawable.dress2, R.drawable.dress3
     };
 }

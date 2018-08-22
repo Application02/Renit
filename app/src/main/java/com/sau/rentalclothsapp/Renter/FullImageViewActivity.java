@@ -20,7 +20,7 @@ import java.util.TimerTask;
 
 public class FullImageViewActivity extends AppCompatActivity {
 
-    private static final Integer[] IMAGES = {R.drawable.homedark, R.drawable.profiledark, R.drawable.inboxdark};
+    private static final Integer[] IMAGES = {R.drawable.dress1, R.drawable.dress2, R.drawable.dress3};
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
