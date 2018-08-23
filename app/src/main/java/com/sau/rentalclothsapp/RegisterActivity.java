@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
-    EditText edtfirstname, edtsurname, edtmail, edtphoneno, edtpassword, edtconfirmpassword;
+    EditText edtfirstname, edtsurname, edtmail, edtphoneno, edtpassword;
     String firstname = null, surname = null;
     String email = null;
     String item = "Renter";
@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtmail = findViewById(R.id.edtmail);
         edtphoneno = findViewById(R.id.edtphoneno);
         edtpassword = findViewById(R.id.edtpassword);
-        edtconfirmpassword = findViewById(R.id.edtconfirmpassword);
+
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
@@ -112,15 +112,14 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validate(edtfirstname) && validate(edtsurname) && validate(edtmail) && validate(edtphoneno) && validate(edtpassword) && validate(edtconfirmpassword)) {
+                if (validate(edtfirstname) && validate(edtsurname) && validate(edtmail) && validate(edtphoneno) && validate(edtpassword)) {
                     firstname = edtfirstname.getText().toString();
                     surname = edtsurname.getText().toString();
                     email = edtmail.getText().toString();
 
 
                     if (isValidEmailAddress(email)) {
-                        if (edtpassword.getText().toString().equals(edtconfirmpassword.getText().toString())) {
-                            editor.putString("type", item); // Storing string
+                             editor.putString("type", item); // Storing string
                             editor.putString("firstname", firstname);
                             editor.putString("surname", surname);
 
@@ -177,9 +176,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
 
 
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "password Not Match", Toast.LENGTH_SHORT).show();
-                        }
+
                     } else {
                         Toast.makeText(RegisterActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
                     }

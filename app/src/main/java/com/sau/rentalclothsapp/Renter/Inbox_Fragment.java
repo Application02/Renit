@@ -28,7 +28,7 @@ public class Inbox_Fragment extends Fragment {
         setHasOptionsMenu(true);
         view = inflater.inflate(R.layout.inbox_fregment, container, false);
 
-        getActivity().setTitle(" InBox");
+        getActivity().setTitle(" Messages");
         init();
 
         return view;

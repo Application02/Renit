@@ -5,9 +5,7 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
 
-import com.sau.rentalclothsapp.Owner.adepter.ImageAdapterMyRenit;
 import com.sau.rentalclothsapp.Owner.adepter.SlidingImage_AdapterMyRenit;
 import com.sau.rentalclothsapp.R;
 import com.viewpagerindicator.CirclePageIndicator;

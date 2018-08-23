@@ -95,6 +95,18 @@
             android:hint="Description"/>
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/framlayout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/ll_view"
+        android:layout_below="@id/txtUnameuser"
+        android:layout_gravity="top"
+        android:layout_weight="8"
+        android:orientation="vertical">
+
+    </FrameLayout>
+
 
 
 </RelativeLayout>

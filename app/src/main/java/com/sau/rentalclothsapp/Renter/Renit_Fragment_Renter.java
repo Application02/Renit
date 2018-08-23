@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,9 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+
 
 import com.sau.rentalclothsapp.R;
 import com.sau.rentalclothsapp.Renter.adepter.ImageAdapterRenit;
@@ -23,6 +23,7 @@ public class Renit_Fragment_Renter extends Fragment {
 
     View view;
     GridView gridView;
+    Fragment fragment = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,8 +49,19 @@ public class Renit_Fragment_Renter extends Fragment {
                 // Pass image index
                 i.putExtra("id", position);
                 startActivity(i);
+              /*  fragment = new FullImageViewFragment();
+                android.support.v4.app.FragmentManager manager = getFragmentManager();
+                android.support.v4.app.FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.framlayout, new FullImageViewFragment());
+                transaction.commit();
+
+*/
+
+
             }
         });
+
+
     }
 
     @Override
