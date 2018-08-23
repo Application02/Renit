@@ -51,13 +51,13 @@ public class Setting_Fragment_Owner extends Fragment {
         bytextmsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "bytextmsg", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "bytextmsg", Toast.LENGTH_SHORT).show();
             }
         });
         bymail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "bymail", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getActivity(), "bymail", Toast.LENGTH_SHORT).show();
             }
         });
     }

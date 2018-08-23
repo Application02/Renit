@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sau.rentalclothsapp.R;
 
@@ -37,8 +38,9 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener {
     View view;
     ImageView profile;
     AlertDialog alert;
+    EditText edtoldpwd,edtnewpwd;
     EditText edtfullname, edtmailid, edtmobileno;
-    TextView txtfullname,txtmailid,txtmobileno;
+    TextView txtfullname,txtmailid,txtmobileno,txtforgetpwd;
     Button btnfullname, btnmailid, btnmobileno,btnok;
     private Uri imageUri;
 
@@ -61,10 +63,13 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener {
         txtfullname = view.findViewById(R.id.txtfullname);
         txtmailid = view.findViewById(R.id.txtmailid);
         txtmobileno = view.findViewById(R.id.txtmobileno);
+        txtforgetpwd = view.findViewById(R.id.txtforgetpwd);
 
         btnfullname.setOnClickListener(this);
         btnmailid.setOnClickListener(this);
         btnmobileno.setOnClickListener(this);
+
+        txtforgetpwd.setOnClickListener(this);
 
         btnok=view.findViewById(R.id.btnok);
 
@@ -242,6 +247,53 @@ public class Profile_Fragment extends Fragment implements View.OnClickListener {
             txtmobileno.setVisibility(View.VISIBLE);
 
             btnok.setVisibility(View.GONE);
+
+        }
+
+        if (view == txtforgetpwd)
+        {
+
+            // get prompts.xml view
+            LayoutInflater li = LayoutInflater.from(getContext());
+            View promptsView = li.inflate(R.layout.profile_changepwd_dailog, null);
+            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+            alertDialog.setView(promptsView);
+            // alertDialog.setTitle("Update Profile");
+            alertDialog.setMessage("Update Password");
+
+             edtoldpwd = promptsView.findViewById(R.id.edtoldpwd);
+             edtnewpwd = promptsView.findViewById(R.id.edtnewpwd);
+
+            Button btncancel = promptsView.findViewById(R.id.btncancelpwd);
+            Button btnupdate = promptsView.findViewById(R.id.btnupdatepwd);
+
+
+            btncancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    alert.dismiss();
+
+                }
+            });
+            btnupdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (!edtoldpwd.getText().toString().isEmpty() && !edtnewpwd.getText().toString().isEmpty())
+                    {
+                        alert.dismiss();
+                        Toast.makeText(getActivity(), "Successfully Updated", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(), "Invalid", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            alert = alertDialog.create();
+            alert.show();
 
         }
     }

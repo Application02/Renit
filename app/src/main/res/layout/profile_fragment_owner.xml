@@ -38,13 +38,28 @@
 
 
         <TextView
+            android:id="@+id/txtfullnameowner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_gravity="left"
-            android:hint="Yagnesh Lashkari" />
+            android:textSize="17sp"
+            android:background="@android:color/transparent"
+            android:text="Yagnesh Lashkari" />
 
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edtfullnameowner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+
+            android:text="Yagnesh Lashkari" />
+
+        <!--android:background="@android:color/transparent"-->
         <Button
+            android:id="@+id/btnfullnameowner"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:layout_alignParentRight="true"
@@ -61,15 +76,26 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
-
         <TextView
+            android:id="@+id/txtmailidowner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:textSize="17sp"
             android:layout_gravity="left"
-            android:hint="abc@gmail.com" />
+            android:text="abc@gmail.com" />
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edtmailidowner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:text="abc@gmail.com" />
 
         <Button
+            android:id="@+id/btnmailidowner"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:layout_alignParentRight="true"
@@ -85,16 +111,28 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
-
         <TextView
+            android:id="@+id/txtmobilenoowner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_gravity="left"
-            android:hint="phone no"
-            android:inputType="number" />
+            android:textSize="17sp"
+            android:inputType="number"
+            android:text="phone no" />
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edtmobilenoowner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:inputType="number"
+            android:text="phone no" />
 
         <Button
+            android:id="@+id/btnmobilenoowner"
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:layout_alignParentRight="true"
@@ -108,17 +146,78 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lin4"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtaddressowner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:textSize="17sp"
+            android:inputType="number"
+            android:text="Update your Address" />
+
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edtaddressowner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="left"
+            android:inputType="number"
+            android:text="Update your Address" />
+
+        <Button
+            android:id="@+id/btnaddressowner"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:background="@drawable/profile_edit" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lin6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin5"
         android:layout_marginTop="30dp"
         android:gravity="right">
 
         <TextView
-            android:id="@+id/txtforgetpwd1"
+            android:id="@+id/txtforgetpwdowner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Change Password"
             android:textColor="@color/green" />
 
     </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lin6"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btnokowner"
+            style="@style/DefaultButton"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:text="Update"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
