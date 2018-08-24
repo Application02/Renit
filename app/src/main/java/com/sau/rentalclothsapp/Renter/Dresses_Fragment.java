@@ -98,7 +98,7 @@ public class Dresses_Fragment extends Fragment {
         });
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, size);
+        ArrayAdapter aa = new ArrayAdapter(getActivity(), R.layout.spinner_row, size);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spinerSize.setAdapter(aa);
@@ -215,7 +215,7 @@ public class Dresses_Fragment extends Fragment {
         });
 
         //Creating the ArrayAdapter instance having the country list
-        ArrayAdapter aa = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, days);
+        ArrayAdapter aa = new ArrayAdapter(getActivity(),  R.layout.spinner_row, days);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spin.setAdapter(aa);
