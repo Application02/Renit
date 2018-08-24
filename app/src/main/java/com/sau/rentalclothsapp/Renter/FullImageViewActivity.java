@@ -32,9 +32,8 @@ public class FullImageViewActivity extends AppCompatActivity {
 
 
     ActionBar actionBar;
-
-
     Toolbar  toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

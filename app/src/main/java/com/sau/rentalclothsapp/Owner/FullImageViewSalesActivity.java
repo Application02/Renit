@@ -1,10 +1,16 @@
 package com.sau.rentalclothsapp.Owner;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.sau.rentalclothsapp.Owner.adepter.SlidingImage_AdapterSales;
 import com.sau.rentalclothsapp.R;
@@ -23,10 +29,34 @@ public class FullImageViewSalesActivity extends AppCompatActivity {
     private static int NUM_PAGES = 0;
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
+    ActionBar actionBar;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_image_view_sales);
+
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        actionBar=getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setTitle("Images"); // for set actionbar title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+
+        //icon set in title bar
+        // Read your drawable from somewhere
+        Drawable dr = getResources().getDrawable(R.drawable.ic_appicon_round);
+        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+        // Scale it to 50 x 50
+        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 90, 90, true));
+        // Set your new, scaled drawable "d"
+
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setIcon(d);
 
 
         // Get intent data
@@ -44,7 +74,21 @@ public class FullImageViewSalesActivity extends AppCompatActivity {
 
     }
 
-        private void initialization() {
+    //this method use for Title bar back arrow to back
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    private void initialization() {
             for (int i = 0; i < IMAGES.length; i++)
                 ImagesArray.add(IMAGES[i]);
             mPager = (ViewPager) findViewById(R.id.pager);
