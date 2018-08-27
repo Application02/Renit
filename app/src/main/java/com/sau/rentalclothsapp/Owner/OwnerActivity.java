@@ -1,11 +1,13 @@
 package com.sau.rentalclothsapp.Owner;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,7 +16,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -34,9 +38,12 @@ import android.widget.Toast;
 
 import com.sau.rentalclothsapp.LoginActivity;
 import com.sau.rentalclothsapp.R;
+import com.sau.rentalclothsapp.Renter.RenterActivity;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+
+import es.dmoral.toasty.Toasty;
 
 public class OwnerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -53,6 +60,8 @@ public class OwnerActivity extends AppCompatActivity
     AlertDialog alert;
     SharedPreferences preferences;
     SharedPreferences.Editor editor1;
+    TextView txtcamera,txtgallery,txtcancel;
+    AlertDialog.Builder alertDialog;
 
 
     @Override
@@ -106,77 +115,59 @@ public class OwnerActivity extends AppCompatActivity
         imageView = headerView.findViewById(R.id.imageViewowner);
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{android.Manifest.permission.INTERNET, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_NETWORK_STATE}, 100);
-
-            imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     // get prompts.xml view
                     LayoutInflater li = LayoutInflater.from(getApplicationContext());
                     View promptsView = li.inflate(R.layout.profile_image_dailog, null);
-                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(OwnerActivity.this);
+                   alertDialog = new AlertDialog.Builder(OwnerActivity.this);
                     alertDialog.setView(promptsView);
                     // alertDialog.setTitle("Update Profile");
                     alertDialog.setMessage("Update Profile Picture");
 
-                    TextView txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
-                    TextView txtgallery = promptsView.findViewById(R.id.txtgallery);
-                    TextView txtcancel = promptsView.findViewById(R.id.txtcancel);
+                     txtcamera = (TextView) promptsView.findViewById(R.id.txtcamera);
+                     txtgallery = promptsView.findViewById(R.id.txtgallery);
+                     txtcancel = promptsView.findViewById(R.id.txtcancel);
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        requestPermissions(new String[]{android.Manifest.permission.INTERNET, android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.ACCESS_NETWORK_STATE}, 100);
+                        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
 
-                        txtcamera.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                            txtcamera.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                startActivityForResult(intent, TAKE_PICTURE);
+                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                    startActivityForResult(intent, TAKE_PICTURE);
 
-                            }
-                        });
-                        txtgallery.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                                intent1.setType("image/*");
-                                startActivityForResult(intent1, PICK_IMAGE);
-                            }
-                        });
-                        txtcancel.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                alert.dismiss();
-                            }
-                        });
-               /* alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    } });*/
+                                }
+                            });
+                            txtgallery.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent1.setType("image/*");
+                                    startActivityForResult(intent1, PICK_IMAGE);
+                                }
+                            });
+                            txtcancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    alert.dismiss();
+                                }
+                            });
 
-                        // alertDialog.show();
-
-                        alert = alertDialog.create();
-                        alert.show();
-                    }
-                    else
-                    {
-
-                        Toast.makeText(OwnerActivity.this, "please give permition", Toast.LENGTH_SHORT).show();
+                            alert = alertDialog.create();
+                            alert.show();
+                        } else {
+                            requestPermissions(new String[]{Manifest.permission.CAMERA}, 666);  // Comment 26
+                        }
                     }
 
 
                 }
             });
-
-        }
-        else
-        {
-
-            Toast.makeText(this, "please give permition", Toast.LENGTH_SHORT).show();
-        }
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = pref.edit();
@@ -213,6 +204,127 @@ public class OwnerActivity extends AppCompatActivity
         //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
+
+       //this method use for run time permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+
+            case 666: // User selected Allowed  Permission Granted
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    txtcamera.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent, TAKE_PICTURE);
+
+                        }
+                    });
+                    txtgallery.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent1 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                            intent1.setType("image/*");
+                            startActivityForResult(intent1, PICK_IMAGE);
+                        }
+                    });
+                    txtcancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            alert.dismiss();
+                        }
+                    });
+               /* alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    } });*/
+
+                    // alertDialog.show();
+
+                    alert = alertDialog.create();
+                    alert.show();
+
+                    // User selected the Never Ask Again Option Change settings in app settings manually
+                } else if (Build.VERSION.SDK_INT >= 23 && !shouldShowRequestPermissionRationale(permissions[0])) {
+
+                    android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this, R.style.AppBaseTheme);
+                    alertDialogBuilder.setTitle("Change Permissions in Settings");
+                    alertDialogBuilder
+                            .setMessage("Click SETTINGS to Manually Set\n\n" + "Permissions to use Change Profile Picture")
+                            .setCancelable(false)
+                            .setPositiveButton("SETTINGS", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                    intent.setData(uri);
+                                    startActivityForResult(intent, 1000);
+                                }
+                            });
+
+                    android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+
+                } else {
+                    // User selected Deny Dialog to EXIT App ==> OR <== RETRY to have a second chance to Allow Permissions
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+
+
+
+                        android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this);
+                        // android.support.v7.app.AlertDialog.Builder alertDialogBuilder = new android.support.v7.app.AlertDialog.Builder(this, R.style.AppTheme);
+                        alertDialogBuilder.setTitle("Please Give Permission");
+                        alertDialogBuilder
+                                .setMessage("Click RETRY to Set Permissions to Allow Camera \n\n" + "Click EXIT to the Close App")
+                                .setCancelable(false)
+                                .setPositiveButton("RETRY", new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog, int id) {
+                                      /*  requestPermissions(new String[]{Manifest.permission.CAMERA},99);*/
+
+                                       /* finish();
+                                        startActivity(getIntent());*/
+
+                                        refresh();
+
+                                       /* Intent i = new Intent(OwnerActivity.this, OwnerActivity.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);*/
+                                    }
+                                })
+                                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        finish();
+                                        dialog.cancel();
+                                    }
+                                });
+                        android.support.v7.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                    }
+                }
+                break;
+        }};
+
+
+    public void refresh() {
+        Intent intent = getIntent();
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+      /*  finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);*/
+    }
+
+
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

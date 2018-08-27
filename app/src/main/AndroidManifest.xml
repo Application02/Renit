@@ -62,7 +62,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity android:name=".Renter.SendMessageActivity" />
-        <activity android:name=".Owner.SendMessageOwnerActivity"></activity>
+
+        <activity android:name=".Owner.SendMessageOwnerActivity">
+
+        </activity>
     </application>
 
 </manifest>

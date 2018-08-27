@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.sau.rentalclothsapp.R;
 
+import es.dmoral.toasty.Toasty;
+
 public class SendMessageActivity extends AppCompatActivity {
 
 
@@ -82,11 +84,14 @@ public class SendMessageActivity extends AppCompatActivity {
             case R.id.item1:
                 if (!edt_to.getText().toString().isEmpty() )
                 {
-                    Toast.makeText(getApplicationContext(),"Message Send",Toast.LENGTH_LONG).show();
+
+                    Toasty.success(getApplicationContext(), "Message Send", Toast.LENGTH_SHORT, true).show();
+                   // Toast.makeText(getApplicationContext(),"Message Send",Toast.LENGTH_LONG).show();
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Email Id Required",Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(), "Email Id Required", Toast.LENGTH_SHORT, true).show();
+                    //Toast.makeText(getApplicationContext(),"Email Id Required",Toast.LENGTH_LONG).show();
                 }
 
                 return true;

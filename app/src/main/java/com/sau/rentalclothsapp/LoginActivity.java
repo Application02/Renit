@@ -26,6 +26,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.sau.rentalclothsapp.Owner.OwnerActivity;
 import com.sau.rentalclothsapp.Renter.RenterActivity;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -123,6 +125,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+               try {
+                   if (whichActivity.isEmpty() || whichActivity.equals("null") || whichActivity.equals(" ") || whichActivity.equals(""))
+                   {
+                       Toasty.error(LoginActivity.this, "Register First", Toast.LENGTH_SHORT, true).show();
+                   }
+               }
+               catch (NullPointerException e)
+               {
+                   e.printStackTrace();
+                   Toasty.error(LoginActivity.this, "Register First", Toast.LENGTH_SHORT, true).show();
+               }
+
 /*
                 if (validate(edtloginmail) && validate(edtloginpwd)) {
 
@@ -143,6 +157,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 //this code for only testing time after texsting remove this and remove commite above code
 
                 try {
+
+
                     switch (whichActivity) {
                         case "Renter": {
                             Intent intent = new Intent(getApplicationContext(), RenterActivity.class);
@@ -157,7 +173,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             break;
                         }
                         default:
-                            Toast.makeText(LoginActivity.this, "Register first", Toast.LENGTH_SHORT).show();
+                            Toasty.error(LoginActivity.this, "Register First", Toast.LENGTH_SHORT, true).show();
+                          //  Toast.makeText(LoginActivity.this, "Register first", Toast.LENGTH_SHORT).show();
                             break;
                     }
 

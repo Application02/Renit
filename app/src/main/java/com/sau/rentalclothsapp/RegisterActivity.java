@@ -6,10 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,6 +22,8 @@ import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import es.dmoral.toasty.Toasty;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -168,8 +174,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 } else {
+                                    Toasty.info(RegisterActivity.this, "Please Select Category", Toast.LENGTH_SHORT, true).show();
 
-                                    Toast.makeText(RegisterActivity.this, "Please Select Category  ", Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(RegisterActivity.this, "Please Select Category  ", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -178,12 +185,30 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(RegisterActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
+                        //or custom toast you can use like this and remove library toasty
+
+                       /* LayoutInflater inflater = getLayoutInflater();
+                        View layout = inflater.inflate(R.layout.toast,
+                                (ViewGroup) findViewById(R.id.toast_layout_root));
+
+                        ImageView image = (ImageView) layout.findViewById(R.id.image);
+                       // image.setImageResource(R.drawable.android);
+                        TextView text = (TextView) layout.findViewById(R.id.text);
+                        text.setText("Enter Valid Email");
+
+                        Toast toast = new Toast(getApplicationContext());
+                        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        toast.setDuration(Toast.LENGTH_SHORT);
+                        toast.setView(layout);
+                        toast.show();*/
+                       Toasty.error(RegisterActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT, true).show();
+                       // Toast.makeText(RegisterActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
                     }
 
 
                 } else {
-                    Toast.makeText(RegisterActivity.this, "please Select Type", Toast.LENGTH_SHORT).show();
+                    Toasty.info(RegisterActivity.this, "Please Select Type", Toast.LENGTH_SHORT, true).show();
+                    //Toast.makeText(RegisterActivity.this, "please Select Type", Toast.LENGTH_SHORT).show();
                 }
 
 

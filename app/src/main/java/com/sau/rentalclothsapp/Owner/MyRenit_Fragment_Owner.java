@@ -53,13 +53,13 @@ public class MyRenit_Fragment_Owner extends Fragment {
         busy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Toast.makeText(getActivity(), "busy", Toast.LENGTH_SHORT).show();
+               //  Toast.makeText(getActivity(), "busy", Toast.LENGTH_SHORT).show();
             }
         });
         available.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Toast.makeText(getActivity(), "available", Toast.LENGTH_SHORT).show();
+                 // Toast.makeText(getActivity(), "available", Toast.LENGTH_SHORT).show();
             }
         });
 

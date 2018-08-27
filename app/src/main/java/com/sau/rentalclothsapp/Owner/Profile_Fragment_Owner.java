@@ -28,6 +28,8 @@ import com.sau.rentalclothsapp.R;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import es.dmoral.toasty.Toasty;
+
 import static android.app.Activity.RESULT_OK;
 
 public class Profile_Fragment_Owner extends Fragment implements View.OnClickListener {
@@ -295,11 +297,13 @@ public class Profile_Fragment_Owner extends Fragment implements View.OnClickList
                     if (!edtoldpwd.getText().toString().isEmpty() && !edtnewpwd.getText().toString().isEmpty())
                     {
                         alert.dismiss();
-                        Toast.makeText(getActivity(), "Successfully Updated", Toast.LENGTH_SHORT).show();
+                        Toasty.success(getActivity(), "Successfully Updated", Toast.LENGTH_SHORT, true).show();
+                      //  Toast.makeText(getActivity(), "Successfully Updated", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
-                        Toast.makeText(getActivity(), "Invalid", Toast.LENGTH_SHORT).show();
+                        Toasty.error(getActivity(), "Invalid", Toast.LENGTH_SHORT, true).show();
+                      //  Toast.makeText(getActivity(), "Invalid", Toast.LENGTH_SHORT).show();
                     }
 
                 }
